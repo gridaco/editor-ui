@@ -85,5 +85,4 @@ Hirachy.defaultProps = {
 export default Hirachy;
 
 const Wrapper = styled.div`
-  background-color: #2a2e39;
 `;

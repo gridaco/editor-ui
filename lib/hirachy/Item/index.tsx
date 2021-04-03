@@ -46,7 +46,6 @@ HirachyItem.defaultProps = {
 export default HirachyItem;
 
 const Wrapper = styled.div<HirachyItemStyledProps>`
-  background-color: #2a2e39;
   background-color: ${(p) => p.isSelect && `#514EFD`};
 
   max-width: 230px;
