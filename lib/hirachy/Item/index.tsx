@@ -48,9 +48,9 @@ export default HirachyItem;
 const Wrapper = styled.div<HirachyItemStyledProps>`
   background-color: ${(p) => p.isSelect && `#514EFD`};
 
-  max-width: 230px;
   height: 30px;
   margin-right: 9px;
+  margin: 3px 0px;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;

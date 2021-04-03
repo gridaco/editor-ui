@@ -59,7 +59,7 @@ function Hirachy(props: HirachyProps) {
           <HirachyItem
             struct={i}
             level={level}
-            isSelect={expandIds.includes(i.id)}
+            isSelect={expandIds[expandIds.length - 1] === i.id}
             onExpand={() => props.onExpand(i.id)}
           />
           {i.child && expandIds.includes(i.id) && (
@@ -85,4 +85,6 @@ Hirachy.defaultProps = {
 export default Hirachy;
 
 const Wrapper = styled.div`
+  max-width: 230px;
+  width: 100%;
 `;
