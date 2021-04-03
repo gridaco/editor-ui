@@ -78,7 +78,7 @@ function Hirachy(props: HirachyProps) {
 
 Hirachy.defaultProps = {
   level: 0,
-  struct: [],
+  structs: [],
   expandIds: [],
 };
 
