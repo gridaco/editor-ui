@@ -2,7 +2,7 @@
   "name": "@reflect-ui.com/editor-x",
   "version": "0.0.1",
   "description": "All you need to create professional editor workspace ui",
-  "main": "index.js",
+  "main": "lib",
   "repository": "https://github.com/bridgedxyz/editor-x",
   "author": "bridged.xyz authors",
   "license": "MIT",
