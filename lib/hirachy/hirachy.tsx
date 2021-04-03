@@ -47,10 +47,12 @@ export interface HirachyProps {
   structs: Struct[];
   /** Expand HitachyItem Function */
   onExpand: (id: string) => void;
+  /** Current Id, ( Selected ) */
+  currentId: string
 }
 
 function Hirachy(props: HirachyProps) {
-  const { level, structs, expandIds } = props;
+  const { level, structs, expandIds, currentId } = props;
 
   return (
     <Wrapper>
@@ -59,7 +61,7 @@ function Hirachy(props: HirachyProps) {
           <HirachyItem
             struct={i}
             level={level}
-            isSelect={expandIds[expandIds.length - 1] === i.id}
+            isSelect={currentId === i.id}
             onExpand={() => props.onExpand(i.id)}
           />
           {i.child && expandIds.includes(i.id) && (
@@ -68,6 +70,7 @@ function Hirachy(props: HirachyProps) {
               level={level + 1}
               structs={i.child}
               onExpand={props.onExpand}
+              currentId={currentId}
             />
           )}
         </React.Fragment>
