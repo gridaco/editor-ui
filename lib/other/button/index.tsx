@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Hirachy() {
+function Button() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function Hirachy() {
   )
 }
 
-export default Hirachy
+export default Button
