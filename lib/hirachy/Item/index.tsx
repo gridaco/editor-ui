@@ -29,7 +29,7 @@ function HirachyItem(props: HirachyItemProps) {
     <Wrapper isSelect={isSelect} ml={25 + 14 * level} onClick={onExpand}>
       <div>
         {child && (
-          <img className="indicator" src="/assets/icons/item-indicator.svg"/>
+          <img className="indicator" src="/assets/icons/item-indicator.svg" />
         )}
         <img className="icon" src={`/assets/icons/item-${type}.svg`} />
         <span>{title}</span>
@@ -46,7 +46,7 @@ HirachyItem.defaultProps = {
 export default HirachyItem;
 
 const Wrapper = styled.div<HirachyItemStyledProps>`
-  background-color: #2A2E39;
+  background-color: #2a2e39;
   background-color: ${(p) => p.isSelect && `#514EFD`};
 
   max-width: 230px;
@@ -54,13 +54,14 @@ const Wrapper = styled.div<HirachyItemStyledProps>`
   margin-right: 9px;
   border-radius: 6px;
   cursor: pointer;
+  transition: all 0.2s ease;
 
   div {
     display: flex;
     align-items: center;
     height: 100%;
-  margin-left: ${(p) => p.ml}px;
-    
+    margin-left: ${(p) => p.ml}px;
+
     span {
       color: #fff;
       font-size: 12px;
@@ -70,5 +71,9 @@ const Wrapper = styled.div<HirachyItemStyledProps>`
       margin-left: 5px;
       margin-right: 4px;
     }
+  }
+
+  &:hover {
+    background-color: #514efd;
   }
 `;
