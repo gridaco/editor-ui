@@ -35,6 +35,10 @@ function PropertyList(){
 ```
 
 
+## Contributing
+
+**join chromatic**
+with this [link](https://www.chromatic.com/builds?appId=606833a032dc6f0021869fe0) you'll get instant access to reflect-editor-ui chromatic
 
 
 
