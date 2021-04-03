@@ -1,6 +1,6 @@
 import React from 'react'
 
-function DashBoard() {
+function DashboardCell() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function DashBoard() {
   )
 }
 
-export default DashBoard
+export default DashboardCell
