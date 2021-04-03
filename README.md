@@ -33,14 +33,14 @@ function PropertyList(){
 ```
 
 ## Design
-Reflect Editor UI's Original design file is opened and available [here][DESIGN_SOURCE_FILE]
+Reflect Editor UI's Original design file is opened and available [here][design_file_source]
 
 
 ## Contributing
 
 - **join chromatic** with this [link](https://www.chromatic.com/builds?appId=606833a032dc6f0021869fe0) you'll get instant access to reflect-editor-ui chromatic
 - **read contributing.md** [here](./CONTRIBUTING.md)
-- **check out the design file** [here](DESIGN_SOURCE_FILE)
+- **check out the design file** [here][design_file_source]
 
 
 
@@ -57,4 +57,4 @@ Reflect Editor UI's Original design file is opened and available [here][DESIGN_S
 - [designto.codes](http://designto.codes/) - [github](https://github.com/bridgedxyz/design-to-code)
 
   
-[DESIGN_SOURCE_FILE]: https://www.figma.com/file/g7ly2MT4hQfoGr7sAvw5FO/editor-ui?node-id=133%3A5909
+[design_file_source]: https://www.figma.com/file/g7ly2MT4hQfoGr7sAvw5FO/editor-ui?node-id=133%3A5909
