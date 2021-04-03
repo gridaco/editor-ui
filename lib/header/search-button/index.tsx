@@ -1,6 +1,10 @@
 import React from 'react'
 
-function HeaderSearchButton() {
+export interface HeaderSearchButtonProps {
+
+}
+
+function HeaderSearchButton(props : HeaderSearchButtonProps) {
   return (
     <div>
       

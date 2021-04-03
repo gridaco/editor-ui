@@ -1,6 +1,10 @@
 import React from 'react'
 
-function HeaderMenu() {
+export interface HeaderMenuProps {
+
+}
+
+function HeaderMenu(props : HeaderMenuProps) {
   return (
     <div>
       

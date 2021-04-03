@@ -1,6 +1,10 @@
 import React from 'react'
 
-function DashboardCell() {
+export interface DashboardCellProps {
+
+}
+
+function DashboardCell(props : DashboardCellProps) {
   return (
     <div>
       

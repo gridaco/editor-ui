@@ -1,6 +1,10 @@
 import React from 'react'
 
-function HeaderNavigationButton() {
+export interface HeadernavigationButtonProps {
+
+}
+
+function HeaderNavigationButton(props : HeadernavigationButtonProps) {
   return (
     <div>
       

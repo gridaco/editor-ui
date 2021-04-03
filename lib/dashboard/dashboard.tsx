@@ -1,6 +1,10 @@
 import React from 'react'
 
-function DashBoard() {
+export interface DashBoardProps {
+
+}
+
+function DashBoard(props: DashBoardProps) {
   return (
     <div>
       

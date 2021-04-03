@@ -1,11 +1,9 @@
-import React from 'react'
+import React from "react";
 
-function DashboardGuide() {
-  return (
-    <div>
-      
-    </div>
-  )
+export interface DashboardGuideProps {}
+
+function DashboardGuide(props: DashboardGuideProps) {
+  return <div></div>;
 }
 
-export default DashboardGuide
+export default DashboardGuide;
