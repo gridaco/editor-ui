@@ -12,9 +12,13 @@ export interface Struct {
 }
 
 export interface HirachyProps {
+  /** HitachyItem Margin Level */
   level?: number;
+  /** Expand HitachyItem id List */
   expandIds?: Array<string>;
+  /** Scene Structs */
   struct: Struct[];
+  /** Expand HitachyItem Function */
   onExpand: (id: string) => void;
 }
 

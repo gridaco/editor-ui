@@ -8,9 +8,13 @@ interface HirachyItemStyledProps {
 }
 
 export interface HirachyItemProps {
+  /** A single Struct for visualization */
   struct: Struct;
+  /** user selects an item or not item `click, mouse-hover` */
   isSelect?: boolean;
+  /** If child exists, the function used to expand */
   onExpand: () => void;
+  /** margin level of item `14 + level + defaultMargin` */
   level: number;
 }
 

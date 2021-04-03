@@ -28,16 +28,19 @@ const BasicStruct = [
       },
     ],
   },
-]
+];
 
 export default {
   title: "Hirachy/Hirachy",
   component: Hirachy,
+  parameters: {
+    componentSubtitle: "A component that wraps HirachyItem to make it into Sturcts."
+  }
 } as Meta;
 
 const Template: Story<HirachyProps> = (args) => <Hirachy {...args} />;
 
 export const Basic = Template.bind({});
 Basic.args = {
-  struct: BasicStruct
+  struct: BasicStruct,
 };
