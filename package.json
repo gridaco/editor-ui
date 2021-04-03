@@ -2,7 +2,7 @@
   "name": "@reflect-ui.com/editor-x",
   "version": "0.0.1",
   "description": "All you need to create professional editor workspace ui",
-  "main": "index.js",
+  "main": "lib",
   "repository": "https://github.com/bridgedxyz/editor-x",
   "author": "bridged.xyz authors",
   "license": "MIT",
@@ -29,6 +29,6 @@
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "chromatic": "npx chromatic"
+    "chromatic": "chromatic --exit-zero-on-changes"
   }
 }
