@@ -10,13 +10,15 @@ import HirachyItem from "./";
 
 <Canvas>
   <Story name="Basic">
-    <HirachyItem
-      struct={{
-        id: "RandomId",
-        title: "StoryBook",
-        type: "text",
-      }}
-    />
+    <div style={{ margin: "2em" }}>
+      <HirachyItem
+        struct={{
+          id: "RandomId",
+          title: "StoryBook",
+          type: "text",
+        }}
+      />
+    </div>
   </Story>
 </Canvas>
 
@@ -28,23 +30,25 @@ import HirachyItem from "./";
 
 <Canvas>
   <Story name="Select / UnSelect">
-    <div style={{ marginBottom: 20 }}>
+    <div style={{ margin: "2em" }}>
+      <div style={{ marginBottom: 20 }}>
+        <HirachyItem
+          struct={{
+            id: "RandomId",
+            title: "Select",
+            type: "text",
+          }}
+          isSelect={true}
+        />
+      </div>
       <HirachyItem
         struct={{
           id: "RandomId",
-          title: "Select",
+          title: "UnSelect",
           type: "text",
         }}
-        isSelect={true}
       />
     </div>
-    <HirachyItem
-      struct={{
-        id: "RandomId",
-        title: "UnSelect",
-        type: "text",
-      }}
-    />
   </Story>
 </Canvas>
 
@@ -53,28 +57,31 @@ import HirachyItem from "./";
 **Struct's Deps** are called **levels**
 
 Margin formula for level :
+
 ```js
 const levelMargin = 14;
 const defaultMargin = 25;
 
-return level * levelMargin + defaultMargin
+return level * levelMargin + defaultMargin;
 ```
 
 <Canvas>
   <Story name="Level Variant">
-    {Array(4)
-      .fill(null)
-      .map((_, ix) => (
-        <div style={{ marginBottom: 20 }}>
-          <HirachyItem
-            struct={{
-              id: "RandomId",
-              title: `level ${ix}`,
-              type: "text",
-            }}
-            level={ix}
-          />
-        </div>
-      ))}
+    <div style={{ margin: "2em" }}>
+      {Array(4)
+        .fill(null)
+        .map((_, ix) => (
+          <div style={{ marginBottom: 20 }}>
+            <HirachyItem
+              struct={{
+                id: "RandomId",
+                title: `level ${ix}`,
+                type: "text",
+              }}
+              level={ix}
+            />
+          </div>
+        ))}
+    </div>
   </Story>
 </Canvas>

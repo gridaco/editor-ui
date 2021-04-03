@@ -10,7 +10,9 @@ import Hirachy, { dummyData } from "./hirachy";
 
 <Canvas>
   <Story name="Basic">
-    <Hirachy structs={dummyData} />
+    <div style={{ margin: "2em", width: 230 }}>
+      <Hirachy structs={dummyData} />
+    </div>
   </Story>
 </Canvas>
 
@@ -22,6 +24,8 @@ For expanded items, it automatically becomes selected Item.
 
 <Canvas>
   <Story name="Expand Item">
-    <Hirachy structs={dummyData} expandIds={["1"]} />
+    <div style={{ margin: "2em", width: 230 }}>
+      <Hirachy structs={dummyData} expandIds={["1"]} />
+    </div>
   </Story>
 </Canvas>
