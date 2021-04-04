@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 
 import HirachyItem from "./Item";
@@ -39,20 +39,23 @@ export interface Struct {
 }
 
 export interface HirachyProps {
+  /** @inetrnal Expand HirachyItem Function */
+  onExpand?: () => void;
+  /** Selected HirachyItem Function */
+  onSelect: (id: string) => void;
   /** HitachyItem Margin Level */
   level?: number;
   /** Expand HitachyItem id List */
   expandIds?: Array<string>;
   /** Scene Structs */
   structs: Struct[];
-  /** Expand HitachyItem Function */
-  onExpand: (id: string) => void;
-  /** Current Id, ( Selected ) */
-  currentId: string
+  /** Current Selected Id */
+  selectId: string;
 }
 
 function Hirachy(props: HirachyProps) {
-  const { level, structs, expandIds, currentId } = props;
+  const [isExpaned, setIsExpaned] = useState(false);
+  const { level, structs, expandIds, onSelect, selectId } = props;
 
   return (
     <Wrapper>
@@ -61,16 +64,19 @@ function Hirachy(props: HirachyProps) {
           <HirachyItem
             struct={i}
             level={level}
-            isSelect={currentId === i.id}
-            onExpand={() => props.onExpand(i.id)}
+            isExpand={isExpaned}
+            isSelect={selectId === i.id}
+            onExpand={() => setIsExpaned(!isExpaned)}
+            onSelect={() => onSelect(i.id)}
           />
-          {i.child && expandIds.includes(i.id) && (
+          {i.child && isExpaned && (
             <Hirachy
               expandIds={expandIds}
+              selectId={selectId}
               level={level + 1}
               structs={i.child}
-              onExpand={props.onExpand}
-              currentId={currentId}
+              onExpand={() => setIsExpaned(!isExpaned)}
+              onSelect={onSelect}
             />
           )}
         </React.Fragment>
