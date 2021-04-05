@@ -1,0 +1,30 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+
+import Icon from "./";
+import icons from "./icons";
+
+<Meta title="Icons/Icon" component={Icon} />
+
+# Icon
+
+`Icon` Component
+
+<Canvas>
+  <Story name="single">
+    <div style={{ padding: "2em", backgroundColor: "rgba(0,0,0,0.2)" }}>
+      <Icon name="indicator" width={24} height={24} />
+    </div>
+  </Story>
+</Canvas>
+
+# Icon List
+
+<Canvas>
+  <Story name="list">
+    <div style={{ padding: "2em", backgroundColor: "rgba(0,0,0,0.2)" }}>
+      {Object.keys(icons).map((i) => (
+        <Icon name={i} width={24} height={24} />
+      ))}
+    </div>
+  </Story>
+</Canvas>
