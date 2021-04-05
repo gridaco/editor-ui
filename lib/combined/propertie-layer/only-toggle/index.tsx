@@ -22,7 +22,9 @@ export default OnlyToggle;
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-
+  justify-content: space-between;
+  width: 210px;
+  
   label {
     font-size: 12px;
     color: #fff;

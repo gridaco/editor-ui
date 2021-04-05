@@ -1,26 +1,26 @@
 import React from "react";
 import styled from "@emotion/styled";
 import TextField from "../../../property/input/text-field";
-import Silder from "../../../property/input/silder";
+import Icon from "../../../icons";
 
-function TextFieldnSilder(props: { label: string }) {
+function OnlyTextField(props: { label: string }) {
   const { label } = props;
+
   return (
     <Wrapper>
       <label>{label}</label>
-      <div className="editor-area">
-        <div className="postion x">
-          <TextField placeholder="0°" width={60} />
-        </div>
-        <div className="silder">
-          <Silder width={60} />
-        </div>
+      <div className="postion x">
+        <TextField
+          placeholder="0"
+          width={135}
+          rightIcon={<Icon name="close" />}
+        />
       </div>
     </Wrapper>
   );
 }
 
-export default TextFieldnSilder;
+export default OnlyTextField;
 
 const Wrapper = styled.div`
   display: flex;
@@ -34,13 +34,7 @@ const Wrapper = styled.div`
     margin-right: 30px;
   }
 
-  .editor-area {
-    display: flex;
-    align-items: center;
-  }
-
-  .postion,
-  .silder {
+  .postion {
     margin: 0px 4px;
   }
 `;
