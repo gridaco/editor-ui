@@ -1,6 +1,7 @@
 import React, { CSSProperties } from "react";
 import styled from "@emotion/styled";
-import Icon from "../../icons/";
+import Icon from "../../../icons/";
+import ColorPicker from "./color-picker";
 
 const colors = [
   "aliceblue",
@@ -161,13 +162,7 @@ interface BackgroundInputStyledProps {
 function BackgrounInput() {
   return (
     <Wrapper>
-      <ColorPicker>
-        <div className="gradient-wrapper">
-          <div className="gradient-set">
-            <div className="black-gradient" />
-          </div>
-        </div>
-      </ColorPicker>
+      <ColorPicker />
       <CustomColorSelector>
         <ColorInputArea>
           <Icon name="pipette" />
@@ -212,35 +207,6 @@ const Wrapper = styled.div`
     outline: none;
     border: none;
     width: 100%;
-  }
-`;
-
-const ColorPicker = styled.div`
-  flex: 2;
-  position: relative;
-
-  .gradient-wrapper {
-    position: absolute;
-    inset: 0px;
-    display: flex;
-    background: rgb(255, 9, 0);
-
-    .gradient-set {
-      position: absolute;
-      inset: 0px;
-      background: linear-gradient(
-        to right,
-        rgb(255, 255, 255),
-        rgba(255, 255, 255, 0)
-      );
-
-      .black-gradient {
-        background: linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0));
-        position: absolute;
-        inset: 0px;
-        flex: 1;
-      }
-    }
   }
 `;
 
