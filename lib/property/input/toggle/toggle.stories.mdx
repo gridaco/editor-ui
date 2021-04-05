@@ -1,0 +1,28 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+
+import Toggle from "./";
+import Icon from "../../../icons";
+
+<Meta title="Property/Toggle" component={Toggle} />
+
+# Toggle Text
+
+`toggle` Component
+
+<Canvas>
+  <Story name="single">
+    <div style={{ padding: "2em", backgroundColor: "rgba(0,0,0,0.2)" }}>
+      <Toggle leftItem="ON" rightItem="OFF" />
+    </div>
+  </Story>
+</Canvas>
+
+# Toggle Icon
+
+<Canvas>
+  <Story name="list">
+    <div style={{ padding: "2em", backgroundColor: "rgba(0,0,0,0.2)" }}>
+      <Toggle leftItem={<Icon name="hirachyImage" />} rightItem={<Icon name="hirachyLayout" />} />
+    </div>
+  </Story>
+</Canvas>

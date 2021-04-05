@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, useState } from "react";
 import styled from "@emotion/styled";
 import Icon from "../../../icons/";
 import ColorPicker from "./color-picker";
@@ -160,6 +160,8 @@ interface BackgroundInputStyledProps {
 }
 
 function BackgrounInput() {
+  const [color, setColor] = useState({ hex: "", alpha: "" });
+
   return (
     <Wrapper>
       <ColorPicker />
@@ -170,10 +172,30 @@ function BackgrounInput() {
           <div className="custom-area">
             <div className="color-hex">
               <span>#</span>
-              <input placeholder="FFFFFF" />
+              <input
+                placeholder="FFFFFF"
+                maxLength={6}
+                value={color.hex}
+                onChange={({ target: { value } }) =>
+                  setColor((d) => ({
+                    ...d,
+                    hex: value,
+                  }))
+                }
+              />
             </div>
             <div className="alpha-percent">
-              <input placeholder="100" />
+              <input
+                placeholder="100"
+                maxLength={3}
+                value={color.alpha}
+                onChange={({ target: { value } }) =>
+                  setColor((d) => ({
+                    ...d,
+                    alpha: value.length === 3 ? "100" : value,
+                  }))
+                }
+              />
               <span>%</span>
             </div>
           </div>
