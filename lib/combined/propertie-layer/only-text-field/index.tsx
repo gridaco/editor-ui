@@ -8,7 +8,7 @@ function OnlyTextField(props: { label: string }) {
 
   return (
     <Wrapper>
-      <span>{label}</span>
+      <label>{label}</label>
       <div className="postion x">
         <TextField
           placeholder="0"
@@ -33,7 +33,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
 
-  span {
+  label {
     font-size: 12px;
     color: #fff;
     margin-right: 30px;

@@ -1,29 +1,30 @@
-import React from "react";
-import styled from "@emotion/styled";
-import TextField from "../../../property/input/text-field";
-import Silder from "../../../property/input/silder";
+import React from 'react'
+import styled from '@emotion/styled'
+import TextField from '../../../property/input/text-field';
+import Selector from '../../../property/input/selector';
 
-function TextFieldnSilder(props : {
+function TextFieldnSelector(props : {
   label : string
 }) {
   const { label } = props;
+
   return (
     <Wrapper>
       <label>{label}</label>
       <div className="postion x">
         <TextField placeholder="0°" width={60} />
       </div>
-      <div className="silder">
-        <Silder width={60} />
+      <div className="selector">
+        <Selector />
       </div>
     </Wrapper>
-  );
+  )
 }
 
-export default TextFieldnSilder;
+export default TextFieldnSelector
 
 const Wrapper = styled.div`
-  display: flex;
+display: flex;
   align-items: center;
 
   label {
@@ -32,7 +33,7 @@ const Wrapper = styled.div`
     margin-right: 30px;
   }
 
-  .postion, .silder {
+  .postion, .selector {
     margin: 0px 4px;
   }
-`;
+`

@@ -1,0 +1,37 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+
+import OnlyToggle from "./";
+
+<Meta title="Combined/OnlyToggle" component={OnlyToggle} />
+
+# OnlyToggle
+
+`OnlyToggle` combined component
+
+<Canvas>
+  <Story name="Basic">
+    <div style={{ padding: "2em", width: 230, backgroundColor: "rgba(0,0,0,0.2)"  }}>
+      <OnlyToggle label="Label" leftItem="LEFT" rightItem="RIGHT" />
+    </div>
+  </Story>
+</Canvas>
+
+# Example - Visible
+
+<Canvas>
+  <Story name="Visible">
+    <div style={{ padding: "2em", width: 230, backgroundColor: "rgba(0,0,0,0.2)"  }}>
+      <OnlyToggle label="Visible" leftItem="True" rightItem="False" />
+    </div>
+  </Story>
+</Canvas>
+
+# Example - Overflow
+
+<Canvas>
+  <Story name="Overflow">
+    <div style={{ padding: "2em", width: 230, backgroundColor: "rgba(0,0,0,0.2)"  }}>
+      <OnlyToggle label="Overflow" leftItem="Show" rightItem="Hide" />
+    </div>
+  </Story>
+</Canvas>

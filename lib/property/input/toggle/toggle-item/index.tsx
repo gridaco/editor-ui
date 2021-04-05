@@ -30,6 +30,7 @@ const Wrapper = styled.div<{ a: boolean }>`
   `}
 
   span {
+    font-size: 12px;
     padding: 4px 0px;
   }
 `;
