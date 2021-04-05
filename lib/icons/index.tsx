@@ -5,6 +5,7 @@ import icons, { IconList } from "./icons";
 interface IconStyledProps {
   width?: number;
   height?: number;
+  fill?: CSSProperties["fill"]
 }
 
 export interface IconProps
@@ -15,15 +16,17 @@ export interface IconProps
   name: keyof IconList;
   width?: number;
   height?: number;
+  iconColor?: CSSProperties["fill"]
 }
 
 function Icon(props: IconProps) {
-  const { name, width, height, ...divProps } = props;
+  const { name, width, height, iconColor, ...divProps } = props;
 
   return (
     <ResponsiveBox
       width={width || icons[name].width}
       height={height || icons[name].height}
+      fill={iconColor}
       {...divProps}
     >
       <svg
@@ -44,4 +47,10 @@ const ResponsiveBox = styled.div<IconStyledProps>`
   justify-content: center;
   width: ${(p) => p.width}px;
   height: ${(p) => p.height}px;
+
+  svg {
+    * {
+      fill: ${p => p.fill};
+    }
+  }
 `;
