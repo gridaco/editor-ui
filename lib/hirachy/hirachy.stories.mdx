@@ -1,6 +1,7 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
 
 import Hirachy, { dummyData } from "./hirachy";
+import Icon from "../icons";
 
 <Meta title="Hirachy/Hirachy" component={Hirachy} />
 
@@ -26,6 +27,18 @@ For expanded items, it automatically becomes selected Item.
   <Story name="Expand Item">
     <div style={{ padding: "2em", width: 230, backgroundColor: "rgba(0,0,0,0.2)"  }}>
       <Hirachy structs={dummyData} />
+    </div>
+  </Story>
+</Canvas>
+
+### How to Expand?
+
+Click indicator icon, Icon look like this
+
+<Canvas>
+  <Story name="How to Expand?">
+    <div style={{ padding: "2em", width: 24, backgroundColor: "rgba(0,0,0,0.2)"  }}>
+      <Icon name="indicator" width={24} height={24} />
     </div>
   </Story>
 </Canvas>
