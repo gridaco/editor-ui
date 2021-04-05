@@ -7,19 +7,24 @@ interface IconStyledProps {
   height?: number;
 }
 
-export interface IconProps {
+export interface IconProps
+  extends React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+  > {
   name: keyof IconList;
   width?: number;
   height?: number;
 }
 
 function Icon(props: IconProps) {
-  const { name, width, height } = props;
+  const { name, width, height, ...divProps } = props;
 
   return (
     <ResponsiveBox
       width={width || icons[name].width}
       height={height || icons[name].height}
+      {...divProps}
     >
       <svg
         viewBox={`0 0 ${icons[name].width} ${icons[name].height}`}
@@ -30,7 +35,6 @@ function Icon(props: IconProps) {
     </ResponsiveBox>
   );
 }
-
 
 export default Icon;
 

@@ -10,7 +10,7 @@ import HirachyItem from "./";
 
 <Canvas>
   <Story name="Basic">
-    <div style={{ margin: "2em" }}>
+    <div style={{ padding: "2em", backgroundColor: "rgba(0,0,0,0.2)"  }}>
       <HirachyItem
         struct={{
           id: "RandomId",
@@ -30,7 +30,7 @@ import HirachyItem from "./";
 
 <Canvas>
   <Story name="Select / UnSelect">
-    <div style={{ margin: "2em" }}>
+    <div style={{ padding: "2em", backgroundColor: "rgba(0,0,0,0.2)"  }}>
       <div style={{ marginBottom: 20 }}>
         <HirachyItem
           struct={{
@@ -67,7 +67,7 @@ return level * levelMargin + defaultMargin;
 
 <Canvas>
   <Story name="Level Variant">
-    <div style={{ margin: "2em" }}>
+    <div style={{ padding: "2em", backgroundColor: "rgba(0,0,0,0.2)"  }}>
       {Array(4)
         .fill(null)
         .map((_, ix) => (

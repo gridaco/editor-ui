@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Struct } from "../hirachy";
+import Icon from "../../icons";
 
 interface HirachyItemStyledProps {
   ml?: number;
@@ -23,6 +24,19 @@ export interface HirachyItemProps {
   isExpand?: boolean;
 }
 
+function returnTypeIcon(type: Struct["type"]) {
+  switch (type) {
+    case "icon":
+      return <Icon name="hirachyLayout" />;
+    case "layout":
+      return <Icon name="hirachyLayout" />;
+    case "image":
+      return <Icon name="hirachyImage" />;
+    case "text":
+      return <Icon name="hirachyText" />;
+  }
+}
+
 function HirachyItem(props: HirachyItemProps) {
   const {
     onExpand,
@@ -36,15 +50,11 @@ function HirachyItem(props: HirachyItemProps) {
     <Wrapper isSelect={isSelect} ml={25 + 14 * level}>
       <div className="indicator">
         {child && (
-          <Icon
-            src="/assets/icons/item-indicator.svg"
-            isExpand={isExpand}
-            onClick={onExpand}
-          />
+          <CustomIcon name="indicator" isExpand={isExpand} onClick={onExpand} />
         )}
       </div>
       <div className="label" onClick={onSelect}>
-        <img className="icon" src={`/assets/icons/item-${type}.svg`} />
+        {returnTypeIcon(type)}
         <span>{title}</span>
       </div>
     </Wrapper>
@@ -83,13 +93,9 @@ const Wrapper = styled.div<HirachyItemStyledProps>`
     width: 100%;
 
     span {
+      margin-left: 4px;
       color: #fff;
       font-size: 12px;
-    }
-
-    .icon {
-      margin-left: 5px;
-      margin-right: 4px;
     }
   }
 
@@ -98,9 +104,17 @@ const Wrapper = styled.div<HirachyItemStyledProps>`
   }
 `;
 
-const Icon = styled.img<HirachyItemStyledProps>`
-  transition: all 0.2s ease;
-  transform: ${(p) => p.isExpand && "rotate(90deg)"};
-  width: 12px;
-  height: 12px;
+const CustomIcon = styled(Icon)<HirachyItemStyledProps>`
+  transition: all 0.3s ease;
+  ${(p) =>
+    p.isExpand &&
+    `
+  transform : rotate(90deg);
+
+  svg {
+    path {
+      fill: #fff;
+    }
+  }
+  `}
 `;

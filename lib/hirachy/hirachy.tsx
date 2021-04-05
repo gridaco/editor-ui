@@ -10,19 +10,19 @@ export const dummyData = [
     type: "layout",
     child: [
       {
-        id: "id",
+        id: "3",
         title: "Item",
         type: "layout",
       },
     ],
   },
   {
-    id: "id",
+    id: "2",
     title: "Item2",
     type: "layout",
     child: [
       {
-        id: "id",
+        id: "4",
         title: "Item",
         type: "layout",
       },
@@ -45,8 +45,6 @@ export interface HirachyProps {
   onSelect: (id: string) => void;
   /** HitachyItem Margin Level */
   level?: number;
-  /** Expand HitachyItem id List */
-  expandIds?: Array<string>;
   /** Scene Structs */
   structs: Struct[];
   /** Current Selected Id */
@@ -55,7 +53,7 @@ export interface HirachyProps {
 
 function Hirachy(props: HirachyProps) {
   const [isExpaned, setIsExpaned] = useState(false);
-  const { level, structs, expandIds, onSelect, selectId } = props;
+  const { level, structs, onSelect, selectId } = props;
 
   return (
     <Wrapper>
@@ -71,7 +69,6 @@ function Hirachy(props: HirachyProps) {
           />
           {i.child && isExpaned && (
             <Hirachy
-              expandIds={expandIds}
               selectId={selectId}
               level={level + 1}
               structs={i.child}
