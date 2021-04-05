@@ -1,27 +1,23 @@
 import React from "react";
 import styled from "@emotion/styled";
 import TextField from "../../../property/input/text-field";
+import Toggle from "../../../property/input/toggle";
 import Icon from "../../../icons";
 
-function OnlyTwoTextField(props: { label: string }) {
+function TextFieldnToggle(props: { label: string }) {
   const { label } = props;
-
   return (
     <Wrapper>
       <label>{label}</label>
       <div className="editor-area">
         <div className="postion x">
-          <TextField
-            placeholder="0"
-            width={60}
-            rightIcon={<Icon name="xPostion" />}
-          />
+          <TextField placeholder="0°" width={60} />
         </div>
-        <div className="postion y">
-          <TextField
-            placeholder="0"
-            width={60}
-            rightIcon={<Icon name="yPostion" width={16} />}
+        <div className="toggle">
+          <Toggle
+            itemWidth={28}
+            leftItem={<Icon name="allBoundary" />}
+            rightItem={<Icon name="cornerBoundary" />}
           />
         </div>
       </div>
@@ -29,7 +25,7 @@ function OnlyTwoTextField(props: { label: string }) {
   );
 }
 
-export default OnlyTwoTextField;
+export default TextFieldnToggle;
 
 const Wrapper = styled.div`
   display: flex;
@@ -47,7 +43,8 @@ const Wrapper = styled.div`
     align-items: center;
   }
 
-  .postion {
+  .postion,
+  .toggle {
     margin: 0px 4px;
   }
 `;

@@ -31,7 +31,6 @@ const Wrapper = styled.div`
   label {
     font-size: 12px;
     color: #fff;
-    margin-right: 30px;
   }
 
   .postion {

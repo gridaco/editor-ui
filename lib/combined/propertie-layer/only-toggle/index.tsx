@@ -24,11 +24,10 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 210px;
-  
+
   label {
     font-size: 12px;
     color: #fff;
-    margin-right: 30px;
   }
 
   .postion {

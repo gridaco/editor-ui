@@ -1,11 +1,15 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-function ToggleItem(props: { isActive?: boolean; children: React.ReactNode }) {
-  const { isActive, children } = props;
+function ToggleItem(props: {
+  isActive?: boolean;
+  children: React.ReactNode;
+  width: number;
+}) {
+  const { isActive, children, width } = props;
 
   return (
-    <Wrapper a={isActive ?? false}>
+    <Wrapper w={width ?? 64} a={isActive ?? false}>
       <span>{children}</span>
     </Wrapper>
   );
@@ -13,9 +17,9 @@ function ToggleItem(props: { isActive?: boolean; children: React.ReactNode }) {
 
 export default ToggleItem;
 
-const Wrapper = styled.div<{ a: boolean }>`
+const Wrapper = styled.div<{ a: boolean, w: number }>`
   cursor: pointer;
-  width: 64px;
+  width: ${p => p.w}px;
   color: #fff;
   display: flex;
   align-items: center;
@@ -32,5 +36,8 @@ const Wrapper = styled.div<{ a: boolean }>`
   span {
     font-size: 12px;
     padding: 4px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
