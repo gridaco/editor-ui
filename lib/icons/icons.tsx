@@ -20,6 +20,8 @@ export interface IconList {
   headerVariables: IconListProps;
   headerHandoff: IconListProps;
   headerZoom: IconListProps;
+  xPostion: IconListProps;
+  yPostion: IconListProps;
 }
 
 const icons: IconList = {
@@ -180,6 +182,26 @@ const icons: IconList = {
       <path
         d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z"
         fill="#8E8E8E"
+      />
+    ),
+  },
+  xPostion: {
+    width: 16,
+    height: 16,
+    svg: (
+      <path
+        d="M8.98438 8.16797L10.4688 5.3125H11.3203L9.35938 8.87891V11H8.60938V8.87891L6.64844 5.3125H7.50781L8.98438 8.16797Z"
+        fill="#747474"
+      />
+    ),
+  },
+  yPostion: {
+    width: 16,
+    height: 16,
+    svg: (
+      <path
+        d="M9.99219 7.49219L11.3555 5.3125H12.2383L10.4414 8.13281L12.2812 11H11.3906L9.99219 8.78125L8.58594 11H7.69922L9.54297 8.13281L7.74219 5.3125H8.62109L9.99219 7.49219Z"
+        fill="#747474"
       />
     ),
   },
