@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import TextField from "../../../property/input/text-field";
 import Icon from "../../../icons";
 
-function OnlyTextField(props: { label: string }) {
+function OnlyTwoTextField(props: { label: string }) {
   const { label } = props;
 
   return (
@@ -27,7 +27,7 @@ function OnlyTextField(props: { label: string }) {
   );
 }
 
-export default OnlyTextField;
+export default OnlyTwoTextField;
 
 const Wrapper = styled.div`
   display: flex;
