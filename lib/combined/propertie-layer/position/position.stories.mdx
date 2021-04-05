@@ -1,17 +1,28 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
 
-import CombinedPostion from "./";
+import OnlyTextField from "./";
 
-<Meta title="Combined/Postion" component={CombinedPostion} />
+<Meta title="Combined/OnlyTextField" component={OnlyTextField} />
 
-# CombinedPostion
+# OnlyTextField
 
-`CombinedPostion` combined component
+`OnlyTextField` combined component
 
 <Canvas>
   <Story name="Basic">
     <div style={{ padding: "2em", width: 230, backgroundColor: "rgba(0,0,0,0.2)"  }}>
-      <CombinedPostion/>
+      <OnlyTextField label="Label" />
     </div>
   </Story>
 </Canvas>
+
+# Example - Postion
+
+<Canvas>
+  <Story name="Rotation">
+    <div style={{ padding: "2em", width: 230, backgroundColor: "rgba(0,0,0,0.2)"  }}>
+      <OnlyTextField label="Postion" />
+    </div>
+  </Story>
+</Canvas>
+

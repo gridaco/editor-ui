@@ -1,11 +1,16 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-function Silder() {
+interface SilderStyledProps {
+  w?: number;
+}
+
+function Silder(props: { width?: number }) {
+  const { width } = props;
   return (
     <Wrapper>
       <ActivateLine />
-      <Line />
+      <Line w={width} />
       <Circle />
     </Wrapper>
   );
@@ -33,13 +38,12 @@ const Circle = styled.div`
   width: 10px;
   height: 10px;
   background-color: #fff;
-  border: 1px solid #000;
   border-radius: 50%;
   transform: translate(0px, -5px);
 `;
 
-const Line = styled.div`
-  width: 180px;
+const Line = styled.div<SilderStyledProps>`
+  width: ${(p) => p.w ?? 180}px;
   height: 2px;
   background-color: #3c3c3c;
   border-radius: 1px;
