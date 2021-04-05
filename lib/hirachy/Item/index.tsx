@@ -57,6 +57,7 @@ function HirachyItem(props: HirachyItemProps) {
         {returnTypeIcon(type)}
         <span>{title}</span>
       </div>
+      <span style={{ color: "#fff" }}>--</span>
     </Wrapper>
   );
 }
@@ -79,6 +80,7 @@ const Wrapper = styled.div<HirachyItemStyledProps>`
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   .indicator {
     display: flex;
@@ -90,7 +92,7 @@ const Wrapper = styled.div<HirachyItemStyledProps>`
     display: flex;
     align-items: center;
     height: 100%;
-    width: 100%;
+    width: 80%;
 
     span {
       margin-left: 4px;
