@@ -1,5 +1,5 @@
 {
-  "name": "@reflect-ui.com/editor-x",
+  "name": "@reflect-ui/editor-x",
   "version": "0.0.1",
   "description": "All you need to create professional editor workspace ui",
   "main": "lib",
@@ -11,7 +11,9 @@
     "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
-    "emotion-icons": "^3.7.0",
+    "emotion-icons": "^3.7.0"
+  },
+  "peerDependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
