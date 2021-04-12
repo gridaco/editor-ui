@@ -22,6 +22,8 @@ export interface HirachyItemProps {
   level: number;
   /** */
   expanded?: boolean;
+  /** */
+  children?: React.ReactNode
 }
 
 function returnTypeIcon(type: Struct["type"]) {
@@ -45,6 +47,7 @@ function HierachyItem(props: HirachyItemProps) {
     selected,
     expanded,
     struct: { title, child, type },
+    children,
     ...rest
   } = props;
   return (
@@ -58,6 +61,7 @@ function HierachyItem(props: HirachyItemProps) {
         {returnTypeIcon(type)}
         <span>{title}</span>
       </div>
+      {children}
     </Wrapper>
   );
 }
@@ -70,6 +74,7 @@ HierachyItem.defaultProps = {
 export default HierachyItem;
 
 const Wrapper = styled.div<HirachyItemStyledProps>`
+position: relative;
   background-color: ${(p) => p.selected && `#514EFD`};
   padding-left: ${(p) => p.ml}px;
   height: 30px;
@@ -103,6 +108,10 @@ const Wrapper = styled.div<HirachyItemStyledProps>`
 
   &:hover {
     background-color: #514efd;
+
+    span {
+      color: #fff;
+    }
   }
 `;
 
