@@ -1,23 +1,23 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
 
-import Hirachy, { dummyData } from "./hirachy";
+import Hierachy, { dummyData } from "./hierachy";
 import Icon from "../icons";
 
-<Meta title="Hirachy/Hirachy" component={Hirachy} />
+<Meta title="Hierachy/Hierachy" component={Hirachy} />
 
-# Hirachy
+# Hierachy
 
-`Hirachy` component that **wraps HirachyItem** to make it into Sturcts.
+`Hierachy` component that **wraps HierachyItem** to make it into Sturcts.
 
 <Canvas>
   <Story name="Basic">
     <div style={{ padding: "2em", width: 230, backgroundColor: "rgba(0,0,0,0.2)"  }}>
-      <Hirachy structs={dummyData} />
+      <Hierachy structs={dummyData} />
     </div>
   </Story>
 </Canvas>
 
-## Expand Hirachy Item
+## Expand Hierachy Item
 
 **Item1 has been expanded.**
 
@@ -26,7 +26,7 @@ For expanded items, it automatically becomes selected Item.
 <Canvas>
   <Story name="Expand Item">
     <div style={{ padding: "2em", width: 230, backgroundColor: "rgba(0,0,0,0.2)"  }}>
-      <Hirachy structs={dummyData} />
+      <Hierachy structs={dummyData} />
     </div>
   </Story>
 </Canvas>

@@ -1,2 +1,2 @@
-export * from "./hirachy/hirachy";
-export * from "./hirachy/Item";
+export * from "./hierachy/hierachy";
+export * from "./hierachy/Item";

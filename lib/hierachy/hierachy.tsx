@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 
-import HirachyItem from "./Item";
+import HierachyItem from "./Item";
 
 export const dummyData = [
   {
@@ -32,16 +32,16 @@ export const dummyData = [
 
 type SceneType = "layout" | "text" | "icon" | "image";
 export interface Struct {
-  id: string;
+  id?: string;
   title: string;
-  type: SceneType;
+  type?: SceneType;
   child?: Struct[];
 }
 
-export interface HirachyProps {
-  /** @inetrnal Expand HirachyItem Function */
+export interface HierachyProps {
+  /** @inetrnal Expand HierachyItem Function */
   onExpand?: () => void;
-  /** Selected HirachyItem Function */
+  /** Selected HierachyItem Function */
   onSelect: (id: string) => void;
   /** HitachyItem Margin Level */
   level?: number;
@@ -51,7 +51,7 @@ export interface HirachyProps {
   selectId: string;
 }
 
-function Hirachy(props: HirachyProps) {
+function Hierachy(props: HierachyProps) {
   const [isExpaned, setIsExpaned] = useState(false);
   const { level, structs, onSelect, selectId } = props;
 
@@ -59,16 +59,16 @@ function Hirachy(props: HirachyProps) {
     <Wrapper>
       {structs.map((i, ix) => (
         <React.Fragment key={ix}>
-          <HirachyItem
+          <HierachyItem
             struct={i}
             level={level}
-            isExpand={isExpaned}
+            expanded={isExpaned}
             isSelect={selectId === i.id}
             onExpand={() => setIsExpaned(!isExpaned)}
             onSelect={() => onSelect(i.id)}
           />
           {i.child && isExpaned && (
-            <Hirachy
+            <Hierachy
               selectId={selectId}
               level={level + 1}
               structs={i.child}
@@ -82,13 +82,13 @@ function Hirachy(props: HirachyProps) {
   );
 }
 
-Hirachy.defaultProps = {
+Hierachy.defaultProps = {
   level: 0,
   structs: [],
   expandIds: [],
 };
 
-export default Hirachy;
+export default Hierachy;
 
 const Wrapper = styled.div`
   max-width: 230px;

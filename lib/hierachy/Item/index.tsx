@@ -1,27 +1,27 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Struct } from "../hirachy";
+import { Struct } from "../hierachy";
 import Icon from "../../icons";
 
 interface HirachyItemStyledProps {
   ml?: number;
-  isSelect?: boolean;
-  isExpand?: boolean;
+  selected?: boolean;
+  expanded?: boolean;
 }
 
 export interface HirachyItemProps {
   /**  */
   onSelect: () => void;
   /** If child exists, the function used to expand */
-  onExpand: () => void;
+  onExpand?: () => void;
   /** A single Struct for visualization */
   struct: Struct;
   /** user selects an item or not item `click, mouse-hover` */
-  isSelect?: boolean;
+  selected?: boolean;
   /** margin level of item `14 + level + defaultMargin` */
   level: number;
   /** */
-  isExpand?: boolean;
+  expanded?: boolean;
 }
 
 function returnTypeIcon(type: Struct["type"]) {
@@ -37,40 +37,40 @@ function returnTypeIcon(type: Struct["type"]) {
   }
 }
 
-function HirachyItem(props: HirachyItemProps) {
+function HierachyItem(props: HirachyItemProps) {
   const {
     onExpand,
     onSelect,
     level,
-    isSelect,
-    isExpand,
+    selected,
+    expanded,
     struct: { title, child, type },
+    ...rest
   } = props;
   return (
-    <Wrapper isSelect={isSelect} ml={25 + 14 * level}>
+    <Wrapper selected={selected} ml={10 + 14 * level} {...rest}>
       <div className="indicator">
-        {child && (
-          <CustomIcon name="indicator" isExpand={isExpand} onClick={onExpand} />
+        {expanded != null && (
+          <CustomIcon name="indicator" expanded={expanded} onClick={onExpand} />
         )}
       </div>
       <div className="label" onClick={onSelect}>
         {returnTypeIcon(type)}
         <span>{title}</span>
       </div>
-      <span style={{ color: "#fff" }}>--</span>
     </Wrapper>
   );
 }
 
-HirachyItem.defaultProps = {
+HierachyItem.defaultProps = {
   isSelect: false,
   level: 0,
 };
 
-export default HirachyItem;
+export default HierachyItem;
 
 const Wrapper = styled.div<HirachyItemStyledProps>`
-  background-color: ${(p) => p.isSelect && `#514EFD`};
+  background-color: ${(p) => p.selected && `#514EFD`};
   padding-left: ${(p) => p.ml}px;
   height: 30px;
   margin-right: 9px;
@@ -85,7 +85,7 @@ const Wrapper = styled.div<HirachyItemStyledProps>`
   .indicator {
     display: flex;
     align-items: center;
-    padding: 9px;
+    padding: 4px;
   }
 
   .label {
@@ -96,7 +96,7 @@ const Wrapper = styled.div<HirachyItemStyledProps>`
 
     span {
       margin-left: 4px;
-      color: #fff;
+      color: ${(p) => (p.selected ? `#fff` : `#000`)};
       font-size: 12px;
     }
   }
@@ -109,13 +109,13 @@ const Wrapper = styled.div<HirachyItemStyledProps>`
 const CustomIcon = styled(Icon)<HirachyItemStyledProps>`
   transition: all 0.3s ease;
   ${(p) =>
-    p.isExpand &&
+    p.expanded &&
     `
   transform : rotate(90deg);
 
   svg {
     path {
-      fill: #fff;
+      fill: #000;
     }
   }
   `}
