@@ -1,5 +1,5 @@
 {
-    "name": "@reflect-ui/editor-x",
+    "name": "@reflect-ui/editor-ui",
     "version": "0.0.1",
     "description": "All you need to create professional editor workspace ui",
     "main": "lib",
