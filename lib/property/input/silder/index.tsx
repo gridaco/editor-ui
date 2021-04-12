@@ -1,16 +1,34 @@
-import React from "react";
+import React, { useCallback } from "react";
+import * as RadixSlider from "@radix-ui/react-slider";
 import styled from "@emotion/styled";
 
-interface SilderStyledProps {
-  w?: number;
+interface SilderProps {
+  value: number;
+  min: number;
+  max: number;
+  onChange: (v : number) => void;
 }
 
-function Silder(props: { width?: number }) {
-  const { width } = props;
+function Silder(props: SilderProps) {
+  const { value, min, max, onChange } = props;
+
+  const handleValueChange = useCallback(
+    (v: number[]) => {
+      onChange(v[0]);
+    },
+    [onChange]
+  );
+
   return (
-    <Wrapper>
-      <ActivateLine />
-      <Line w={width} />
+    <Wrapper
+      min={min}
+      max={max}
+      value={[Math.min(Math.max(value, min), max)]}
+      onValueChange={handleValueChange}
+    >
+      <SliderTrack>
+        <Line />
+      </SliderTrack>
       <Circle />
     </Wrapper>
   );
@@ -18,33 +36,39 @@ function Silder(props: { width?: number }) {
 
 export default Silder;
 
-const Wrapper = styled.div`
-  background-color: #fff;
+const Wrapper = styled(RadixSlider.Root)`
+  flex: 1;
   position: relative;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  touch-action: none;
+  height: 16px;
 `;
 
-const ActivateLine = styled.div`
-  position: absolute;
-  width: 0px;
+const SliderTrack = styled(RadixSlider.Track)`
+  background-color: #3c3c3c;
+  position: relative;
+  flex-grow: 1;
   height: 2px;
-  background-color: #8d5cf9;
-  border-radius: 1px;
 `;
 
-const Circle = styled.div`
-  cursor: pointer;
-  top: 0px;
-  position: absolute;
+const Circle = styled(RadixSlider.Thumb)`
+  display: block;
   width: 10px;
   height: 10px;
   background-color: #fff;
-  border-radius: 50%;
-  transform: translate(0px, -5px);
+  border: 1px solid black;
+  border-radius: 20px;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
-const Line = styled.div<SilderStyledProps>`
-  width: ${(p) => p.w ?? 180}px;
-  height: 2px;
+const Line = styled(RadixSlider.Range)`
+  position: absolute;
   background-color: #3c3c3c;
-  border-radius: 1px;
+  border-radius: 100%;
+  height: 100%;
 `;
