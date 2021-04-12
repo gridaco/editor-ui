@@ -8,6 +8,10 @@
     "license": "MIT",
     "private": false,
     "dependencies": {
+        "@dnd-kit/core": "^2.1.2",
+        "@dnd-kit/modifiers": "^1.0.5",
+        "@dnd-kit/sortable": "^2.0.1",
+        "@dnd-kit/utilities": "^1.0.3",
         "@emotion/core": "^11.0.0",
         "@emotion/react": "^11.1.5",
         "@emotion/styled": "^11.1.5",

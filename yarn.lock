@@ -1069,6 +1069,47 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@dnd-kit/accessibility@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@dnd-kit/accessibility/-/accessibility-2.0.0.tgz#d1f265ebedde6a66b71bb69fd8bc900b5138a8e2"
+  integrity sha512-L0KOQnqFR0MJ/IwJIS1A0tvgr47LrWzclJy7wW5i8/3rkdixUzkiD78rYnX7TrFnFNtuEgVxiGSsX2oIlulmUg==
+  dependencies:
+    tslib "^2.0.0"
+
+"@dnd-kit/core@^2.0.0", "@dnd-kit/core@^2.1.0", "@dnd-kit/core@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@dnd-kit/core/-/core-2.1.2.tgz#08d1fede9dd4c5a0f084cc2b95a434813ee9fda7"
+  integrity sha512-mJFKQUWOWq/yuD3jfPON4DuwWVGN/eS8s7GX9I5GbjG3i7Udt8I6ij1ZFinISSTTZxNVdBBcRKO4ctRecDkNKA==
+  dependencies:
+    "@dnd-kit/accessibility" "^2.0.0"
+    "@dnd-kit/utilities" "^1.0.2"
+    tslib "^2.0.0"
+
+"@dnd-kit/modifiers@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@dnd-kit/modifiers/-/modifiers-1.0.5.tgz#207d071ba1715ab5a04aa0a7ba9197cd1d160961"
+  integrity sha512-MEy2a6rwCuQs0I7HYYgYGNwoI2F9QeIKdOWwnnDpsnJ+/d+W8MynTCdjrIYAc3yqwXg5dPpQJkSJMSpaHpt0Jw==
+  dependencies:
+    "@dnd-kit/core" "^2.0.0"
+    "@dnd-kit/utilities" "^1.0.3"
+    tslib "^2.0.0"
+
+"@dnd-kit/sortable@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@dnd-kit/sortable/-/sortable-2.0.1.tgz#27da1a4b8f4e248d794964c5fd8734b000be5791"
+  integrity sha512-HfrIKkIXu+lZge8rRALeELJJA7zhWHubU1bCBAnVgKRhPmPYomN4X6szG81uquSD9Fvq04qBbwyw+uuBp1aJJg==
+  dependencies:
+    "@dnd-kit/core" "^2.1.0"
+    "@dnd-kit/utilities" "^1.0.2"
+    tslib "^2.0.0"
+
+"@dnd-kit/utilities@^1.0.2", "@dnd-kit/utilities@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@dnd-kit/utilities/-/utilities-1.0.3.tgz#9742d229a095bfd08d120b28657c936fb911237f"
+  integrity sha512-TlbsZ3pSiJ6jTDVuGDLY7yoHAjaiFyBWctxDslxAocUeCQVDlcpkGXcPtUKYyGczruUoYapsKlZS5rhLDR+RUg==
+  dependencies:
+    tslib "^2.0.0"
+
 "@emotion-icons/bootstrap@3.11.0":
   version "3.11.0"
   resolved "https://registry.yarnpkg.com/@emotion-icons/bootstrap/-/bootstrap-3.11.0.tgz#375d1e1589f3bceb62734f649af59778d27d07bf"
