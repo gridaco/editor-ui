@@ -30,7 +30,7 @@ export const dummyData = [
   },
 ];
 
-type SceneType = "layout" | "text" | "icon" | "image";
+type SceneType = "layout" | "text" | "icon" | "image" | string;
 export interface Struct {
   id?: string;
   title: string;

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { SquareIcon, CircleIcon, TextIcon, BoxModelIcon, GroupIcon, ImageIcon } from '@radix-ui/react-icons'
 import { Struct } from "../hierachy";
 import Icon from "../../icons";
 
@@ -24,16 +25,24 @@ export interface HirachyItemProps {
   expanded?: boolean;
 }
 
-function returnTypeIcon(type: Struct["type"]) {
+function returnTypeIcon(type: Struct["type"], selected) {
+  const color = selected ? "rgb(220, 220, 220)" : "rgb(139, 139, 139)";
+
   switch (type) {
-    case "icon":
-      return <Icon name="hirachyLayout" />;
-    case "layout":
-      return <Icon name="hirachyLayout" />;
-    case "image":
-      return <Icon name="hirachyImage" />;
+    case "rectangle":
+      return <SquareIcon color={color} />;
+    case "oval":
+      return <CircleIcon color={color} />;
     case "text":
-      return <Icon name="hirachyText" />;
+      return <TextIcon color={color} />;
+    case "artboard":
+      return <BoxModelIcon color={color} />;
+    case "group":
+      return <GroupIcon color={color} />;
+    case "bitmap":
+      return <ImageIcon color={color} />;
+    default:
+      return null;
   }
 }
 
@@ -55,7 +64,7 @@ function HierachyItem(props: HirachyItemProps) {
         )}
       </div>
       <div className="label" onClick={onSelect}>
-        {returnTypeIcon(type)}
+        {returnTypeIcon(type, selected)}
         <span>{title}</span>
       </div>
     </Wrapper>
@@ -85,17 +94,17 @@ const Wrapper = styled.div<HirachyItemStyledProps>`
   .indicator {
     display: flex;
     align-items: center;
-    padding: 4px;
   }
 
   .label {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     height: 100%;
     width: 80%;
 
     span {
-      margin-left: 4px;
+      margin-left: 6px;
       color: ${(p) => (p.selected ? `#fff` : `#000`)};
       font-size: 12px;
     }
