@@ -17,7 +17,7 @@ function TextField(props: {
   return (
     <Wrapper width={width ?? 130}>
       {leftIcon}
-      <input placeholder={placeholder} type="number" value={value} onChange={onChange} />
+      <input placeholder={placeholder} value={value} onChange={onChange} />
       {rightIcon}
     </Wrapper>
   );
@@ -39,7 +39,7 @@ const Wrapper = styled.div<TextFieldStyledProps>`
     padding: 2px 0px 2px 5px;
     color: #000;
     background-color: rgba(0, 0, 0, 0);
-    width: calc(100% - 21px);
+    width: calc(100%);
     border: none;
     outline: none;
 
