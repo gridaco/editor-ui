@@ -1,10 +1,19 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-function Selector() {
+interface SelectorProps {
+  options: Array<string>;
+  value: any;
+  onChange: (v : any) => void;
+}
+
+function Selector(props: SelectorProps) {
+  const { options, value, onChange } = props;
   return (
-    <Wrapper>
-      <option>Select</option>
+    <Wrapper value={value} onChange={e => onChange(e.target.value)}>
+      {options.map((i) => (
+        <option value={i}>{i}</option>
+      ))}
     </Wrapper>
   );
 }
@@ -16,7 +25,7 @@ const Wrapper = styled.select`
   padding: 8px 9px;
   border: none;
   outline: none;
-  background-color: #2B2B2B;
+  background-color: #2b2b2b;
   border-radius: 4px;
   color: #fff;
 `;
