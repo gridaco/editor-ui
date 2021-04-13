@@ -23,5 +23,6 @@ export default Toggle;
 
 const Wrapper = styled.div`
   display: flex;
-  background-color: #262626;
+  background-color: #EEEEEE;
+  border-radius: 4px;
 `;

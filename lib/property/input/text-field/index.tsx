@@ -10,12 +10,14 @@ function TextField(props: {
   rightIcon?: React.ReactNode;
   width?: number;
   placeholder: string;
+  value: any;
+  onChange: (v) => void;
 }) {
-  const { leftIcon, rightIcon, placeholder, width } = props;
+  const { leftIcon, rightIcon, placeholder, width, value, onChange } = props;
   return (
     <Wrapper width={width ?? 130}>
       {leftIcon}
-      <input placeholder={placeholder} />
+      <input placeholder={placeholder} type="number" value={value} onChange={onChange} />
       {rightIcon}
     </Wrapper>
   );
@@ -27,7 +29,7 @@ const Wrapper = styled.div<TextFieldStyledProps>`
   width: ${p => p.width}px;
   padding: 4px;
   height: 25px;
-  background-color: #2b2b2b;
+  background-color: #EEEEEE;
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -35,14 +37,14 @@ const Wrapper = styled.div<TextFieldStyledProps>`
 
   input {
     padding: 2px 0px 2px 5px;
-    color: #fff;
+    color: #000;
     background-color: rgba(0, 0, 0, 0);
     width: calc(100% - 21px);
     border: none;
     outline: none;
 
     &::placeholder {
-      color: #5b5b5b;
+      color: #fff;
     }
   }
 `;
