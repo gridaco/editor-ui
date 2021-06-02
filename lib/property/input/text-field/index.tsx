@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 
 interface TextFieldStyledProps {
-  width: number
+  width: number;
 }
 
 function TextField(props: {
@@ -10,8 +10,8 @@ function TextField(props: {
   rightIcon?: React.ReactNode;
   width?: number;
   placeholder: string;
-  value: any;
-  onChange: (v) => void;
+  value?: any;
+  onChange?: (v) => void;
 }) {
   const { leftIcon, rightIcon, placeholder, width, value, onChange } = props;
   return (
@@ -26,10 +26,10 @@ function TextField(props: {
 export default TextField;
 
 const Wrapper = styled.div<TextFieldStyledProps>`
-  width: ${p => p.width}px;
+  width: ${(p) => p.width}px;
   padding: 4px;
   height: 25px;
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
   border-radius: 4px;
   display: flex;
   align-items: center;

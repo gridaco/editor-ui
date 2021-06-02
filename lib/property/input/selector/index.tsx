@@ -4,13 +4,13 @@ import styled from "@emotion/styled";
 interface SelectorProps {
   options: Array<string>;
   value: any;
-  onChange: (v : any) => void;
+  onChange?: (v: any) => void;
 }
 
 function Selector(props: SelectorProps) {
   const { options, value, onChange } = props;
   return (
-    <Wrapper value={value} onChange={e => onChange(e.target.value)}>
+    <Wrapper value={value} onChange={(e) => onChange(e.target.value)}>
       {options.map((i) => (
         <option value={i}>{i}</option>
       ))}

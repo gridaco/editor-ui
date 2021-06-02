@@ -4,9 +4,9 @@ import styled from "@emotion/styled";
 
 interface SilderProps {
   value: number;
-  min: number;
-  max: number;
-  onChange: (v : number) => void;
+  min?: number;
+  max?: number;
+  onChange?: (v: number) => void;
 }
 
 function Silder(props: SilderProps) {

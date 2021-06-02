@@ -13,7 +13,7 @@ function TextFieldnSilder(props: { label: string }) {
           <TextField placeholder="0°" width={60} />
         </div>
         <div className="silder">
-          <Silder width={60} />
+          <Silder value={60} />
         </div>
       </div>
     </Wrapper>
