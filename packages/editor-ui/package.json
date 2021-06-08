@@ -1,0 +1,38 @@
+{
+    "name": "@editor-ui/editor",
+    "version": "0.0.0",
+    "description": "full package of editor ui packages",
+    "dependencies": {
+        "@dnd-kit/core": "^2.1.2",
+        "@dnd-kit/modifiers": "^1.0.5",
+        "@dnd-kit/sortable": "^2.0.1",
+        "@dnd-kit/utilities": "^1.0.3",
+        "@emotion/core": "^11.0.0",
+        "@emotion/react": "^11.1.5",
+        "@emotion/styled": "^11.1.5",
+        "@radix-ui/react-slider": "^0.0.11",
+        "@radix-ui/react-dropdown-menu": "^0.0.19",
+        "@radix-ui/react-icons": "^1.0.3",
+        "@radix-ui/react-progress": "^0.0.13",
+        "@radix-ui/react-tooltip": "^0.0.18",
+        "emotion-icons": "^3.7.0"
+    },
+    "peerDependencies": {
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1"
+    },
+    "peerDependenciesMeta": {
+        "@types/react": {
+            "optional": true
+        },
+        "@emotion/react": {
+            "optional": true
+        },
+        "@emotion/styled": {
+            "optional": true
+        }
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}
