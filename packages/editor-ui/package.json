@@ -2,6 +2,7 @@
     "name": "@editor-ui/editor",
     "version": "0.0.0",
     "description": "full package of editor ui packages",
+    "main": "lib/index",
     "dependencies": {
         "@dnd-kit/core": "^2.1.2",
         "@dnd-kit/modifiers": "^1.0.5",
