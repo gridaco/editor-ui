@@ -1,0 +1,7 @@
+{
+    "name": "@editor-ui/desktop-titlebar",
+    "version": "0.0.0",
+    "dependencies": {
+        "@editor-ui/foundation": "0.0.0"
+    }
+}
