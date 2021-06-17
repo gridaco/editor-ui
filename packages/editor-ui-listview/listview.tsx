@@ -278,7 +278,6 @@ function ListViewRoot({
   onMoveItem,
 }: ListViewRootProps) {
   const theme = useTheme();
-  console.log("ListViewRoot:theme", theme);
 
   const handleClick = useCallback(
     (event: React.MouseEvent) => {

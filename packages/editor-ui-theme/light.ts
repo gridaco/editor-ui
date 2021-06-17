@@ -123,6 +123,10 @@ export const textStyles = {
 
 export const sizes = {
   sidebarWidth: 260,
+  // draggable area on frameless mac app
+  desktopControlWindowBar: {
+    height: 46,
+  },
   toolbar: {
     height: 46,
     itemSeparator: 8,
