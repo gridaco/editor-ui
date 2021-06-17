@@ -1,41 +1,14 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 
-import HierachyItem from "./Item";
+import { HierachyItem } from "./Item";
 
-export const dummyData = [
-  {
-    id: "1",
-    title: "Item1",
-    type: "layout",
-    child: [
-      {
-        id: "3",
-        title: "Item",
-        type: "layout",
-      },
-    ],
-  },
-  {
-    id: "2",
-    title: "Item2",
-    type: "layout",
-    child: [
-      {
-        id: "4",
-        title: "Item",
-        type: "layout",
-      },
-    ],
-  },
-];
-
-type SceneType = "layout" | "text" | "icon" | "image" | string;
-export interface Struct {
+type GraphicsLayerType = "layout" | "text" | "icon" | "image" | string;
+export interface HierarchyData {
   id?: string;
   title: string;
-  type?: SceneType;
-  child?: Struct[];
+  type?: GraphicsLayerType;
+  children?: HierarchyData[];
 }
 
 export interface HierachyProps {
@@ -46,32 +19,32 @@ export interface HierachyProps {
   /** HitachyItem Margin Level */
   level?: number;
   /** Scene Structs */
-  structs: Struct[];
+  data: HierarchyData[];
   /** Current Selected Id */
   selectId: string;
 }
 
-function Hierachy(props: HierachyProps) {
+export function Hierachy(props: HierachyProps) {
   const [isExpaned, setIsExpaned] = useState(false);
-  const { level, structs, onSelect, selectId } = props;
+  const { level, data: structs, onSelect, selectId } = props;
 
   return (
     <Wrapper>
       {structs.map((i, ix) => (
         <React.Fragment key={ix}>
           <HierachyItem
-            struct={i}
+            data={i}
             level={level}
             expanded={isExpaned}
             isSelect={selectId === i.id}
             onExpand={() => setIsExpaned(!isExpaned)}
             onSelect={() => onSelect(i.id)}
           />
-          {i.child && isExpaned && (
+          {i.children && isExpaned && (
             <Hierachy
               selectId={selectId}
               level={level + 1}
-              structs={i.child}
+              data={i.children}
               onExpand={() => setIsExpaned(!isExpaned)}
               onSelect={onSelect}
             />
@@ -87,8 +60,6 @@ Hierachy.defaultProps = {
   structs: [],
   expandIds: [],
 };
-
-export default Hierachy;
 
 const Wrapper = styled.div`
   max-width: 230px;

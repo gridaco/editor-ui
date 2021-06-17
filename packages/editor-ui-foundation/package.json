@@ -1,0 +1,7 @@
+{
+    "name": "@editor-ui/foundation",
+    "version": "0.0.0",
+    "dependencies": {
+        "@editor-ui/theme": "0.0.0"
+    }
+}

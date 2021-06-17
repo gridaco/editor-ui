@@ -1,3 +1,2 @@
-export * from "./hierachy/hierachy";
-export * from "./hierachy/Item";
-export * as hooks from "./hooks";
+export * from "@editor-ui/hierarchy";
+export * as hooks from "@editor-ui/hooks";

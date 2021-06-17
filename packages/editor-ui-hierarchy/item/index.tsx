@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Struct } from "../hierachy";
-import Icon from "../../icons";
+import { HierarchyData } from "../hierachy";
+import Icon from "@editor-ui/icons";
 
 interface HirachyItemStyledProps {
   ml?: number;
@@ -11,11 +11,11 @@ interface HirachyItemStyledProps {
 
 export interface HirachyItemProps {
   /**  */
-  onSelect: () => void;
+  onSelect?: () => void;
   /** If child exists, the function used to expand */
   onExpand?: () => void;
   /** A single Struct for visualization */
-  struct: Struct;
+  data: HierarchyData;
   /** user selects an item or not item `click, mouse-hover` */
   selected?: boolean;
   /** margin level of item `14 + level + defaultMargin` */
@@ -23,10 +23,10 @@ export interface HirachyItemProps {
   /** */
   expanded?: boolean;
   /** */
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }
 
-function returnTypeIcon(type: Struct["type"]) {
+function returnTypeIcon(type: HierarchyData["type"]) {
   switch (type) {
     case "icon":
       return <Icon name="hirachyLayout" />;
@@ -39,14 +39,14 @@ function returnTypeIcon(type: Struct["type"]) {
   }
 }
 
-function HierachyItem(props: HirachyItemProps) {
+export function HierachyItem(props: HirachyItemProps) {
   const {
     onExpand,
     onSelect,
     level,
     selected,
     expanded,
-    struct: { title, child, type },
+    data: { title, children: child, type },
     children,
     ...rest
   } = props;
@@ -71,10 +71,8 @@ HierachyItem.defaultProps = {
   level: 0,
 };
 
-export default HierachyItem;
-
 const Wrapper = styled.div<HirachyItemStyledProps>`
-position: relative;
+  position: relative;
   background-color: ${(p) => p.selected && `#514EFD`};
   padding-left: ${(p) => p.ml}px;
   height: 30px;
