@@ -23,7 +23,7 @@ export function BarDragArea(props: Props) {
 
 const Wrapper = styled.div(({ theme }) => ({
   /** https://www.electronjs.org/docs/api/frameless-window#draggable-region - this is also present on side nav bar*/
-  "-webkit-app-region": "drag",
+  WebkitAppRegion: "drag",
   width: "100%",
   height: theme.sizes.desktopControlWindowBar.height,
 }));
