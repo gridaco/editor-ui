@@ -1,4 +1,4 @@
-// import { styled } from "path-to/stitches.config";
+import React from "react";
 import * as Avatar from "@radix-ui/react-avatar";
 import styled from "@emotion/styled";
 
@@ -32,9 +32,12 @@ const StyledAvatar = styled(Avatar.Root)`
   vertical-align: middle;
   overflow: hidden;
   user-select: none;
-  width: 48px;
-  height: 48px;
-  border-radius: 24px;
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+
+  opacity: 100%;
+  filter: drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.15));
 `;
 
 const StyledImage = styled(Avatar.Image)`
@@ -49,5 +52,5 @@ const StyledFallback = styled(Avatar.Fallback)`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: dodgerblue;
+  background-color: #717171;
 `;
