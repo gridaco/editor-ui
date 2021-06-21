@@ -44,7 +44,11 @@ export const ContextMenuItem = memo(function ContextMenuItem({
 }: ContextMenuItemProps) {
   if (checked) {
     return (
-      <CheckboxItemElement checked={checked} onSelect={onSelect}>
+      <CheckboxItemElement
+        theme={undefined}
+        checked={checked}
+        onSelect={onSelect}
+      >
         <StyledItemIndicator>
           <CheckIcon />
         </StyledItemIndicator>
@@ -53,7 +57,7 @@ export const ContextMenuItem = memo(function ContextMenuItem({
     );
   } else {
     return (
-      <ItemElement onSelect={onSelect}>
+      <ItemElement theme={undefined} onSelect={onSelect}>
         {indented && (
           <Spacer.Horizontal size={CHECKBOX_WIDTH - CHECKBOX_RIGHT_INSET} />
         )}

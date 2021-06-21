@@ -1,4 +1,5 @@
 import React, {
+  //@ts-ignore
   ForwardedRef,
   forwardRef,
   memo,
@@ -28,9 +29,8 @@ const ChevronContainer = styled.span({
   alignItems: "center",
 });
 
-export type TreeRowProps<
-  MenuItemType extends string
-> = ListViewRowProps<MenuItemType> & TreeRowBaseProps;
+export type TreeRowProps<MenuItemType extends string> =
+  ListViewRowProps<MenuItemType> & TreeRowBaseProps;
 
 const TreeRow = forwardRef(function TreeRow<MenuItemType extends string>(
   {
