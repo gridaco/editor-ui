@@ -1,8 +1,7 @@
 import React, { memo, ReactNode } from "react";
-import styled from "@emotion/styled";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import { Slot } from "@radix-ui/react-slot";
-import "@editor-ui/theme";
+import styled from "@editor-ui/theme";
 
 const Content = styled(TooltipPrimitive.Content)(({ theme }) => ({
   ...theme.textStyles.small,

@@ -1,6 +1,5 @@
 import React from "react";
-import styled from "@emotion/styled";
-import "@editor-ui/theme";
+import styled from "@editor-ui/theme";
 
 interface Props {
   controlDoubleClick: (e?) => void;

@@ -11,7 +11,8 @@ import React, {
   useContext,
 } from "react";
 import { composeRefs } from "@radix-ui/react-compose-refs";
-import styled, { CSSObject } from "@emotion/styled";
+import { CSSObject } from "@emotion/styled";
+import styled from "@editor-ui/theme";
 import { useTheme } from "@emotion/react";
 import { useHover } from "@editor-ui/hooks";
 
@@ -19,8 +20,6 @@ import * as ContextMenu from "@editor-ui/context-menu";
 import { ContextMenuRoot } from "@editor-ui/context-menu";
 
 import * as Sortable from "@editor-ui/sortable";
-
-import "@editor-ui/theme";
 
 export type ListRowPosition = "only" | "first" | "middle" | "last";
 
@@ -220,6 +219,7 @@ const ListViewRow = forwardRef(function ListViewRow<
 
     if (menuItems) {
       return (
+        //@ts-ignore
         <ContextMenuRoot<MenuItemType>
           items={menuItems}
           onSelect={onSelectMenuItem}
@@ -241,7 +241,7 @@ const ListViewRow = forwardRef(function ListViewRow<
       </Sortable.Item>
     );
   }
-
+  //@ts-ignore
   return renderContent({}, forwardedRef);
 });
 

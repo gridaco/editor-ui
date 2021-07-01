@@ -1,7 +1,7 @@
 import React, { ForwardedRef, forwardRef, memo, ReactNode } from "react";
-import styled from "@emotion/styled";
+// import styled from "@emotion/styled";
 import { Tooltip } from "@editor-ui/tooltip";
-import "@editor-ui/theme";
+import styled from "@editor-ui/theme";
 
 type ButtonVariant = "normal" | "thin";
 
@@ -11,6 +11,7 @@ type ButtonVariant = "normal" | "thin";
 
 const ButtonElement = styled.button<{
   active: boolean;
+  disabled: boolean;
   variant: ButtonVariant;
 }>(({ theme, active, disabled, variant }) => ({
   ...theme.textStyles.small,
