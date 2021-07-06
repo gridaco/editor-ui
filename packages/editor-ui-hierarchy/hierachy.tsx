@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 
-import { HierachyItem } from "./Item";
+import { HierachyItem } from "./item";
 
 type GraphicsLayerType = "layout" | "text" | "icon" | "image" | string;
 export interface HierarchyData {
