@@ -14,8 +14,12 @@ export function MultiplayerAvatarGroup(props: MultiplayerAvatarGroupProps) {
 
   return (
     <_Root>
-      {props.children.map((c) => {
-        return <Positioned spacing={props.spacing}>{c}</Positioned>;
+      {props.children.map((c, i) => {
+        return (
+          <Positioned key={i} spacing={props.spacing}>
+            {c}
+          </Positioned>
+        );
       })}
     </_Root>
   );
