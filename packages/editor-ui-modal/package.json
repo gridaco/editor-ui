@@ -1,0 +1,8 @@
+{
+    "name": "@editor-ui/modal",
+    "version": "0.0.0",
+    "main": "index.ts",
+    "dependencies": {
+        "@radix-ui/react-dialog": "^0.0.19"
+    }
+}
