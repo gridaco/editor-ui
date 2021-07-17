@@ -3,3 +3,13 @@
 ```sh
 yarn add @editor-ui/modal
 ```
+
+## Usage
+
+```tsx
+import { showModal } from "@editor-ui/modal";
+
+showModal(<>Hi</>).then((d) => {
+  // do something with modal result
+});
+```
