@@ -49,9 +49,6 @@ export const DialogContent = React.forwardRef(
       ref={forwardedRef}
     >
       {children}
-      <DialogPrimitive.Close>
-        <Cross1Icon />
-      </DialogPrimitive.Close>
     </StyledContent>
   )
 );
