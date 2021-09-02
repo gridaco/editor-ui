@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 
 interface MultiplayerAvatarGroupProps {
   spacing?: number;
-  children: JSX.Element[];
+  children?: JSX.Element[];
 }
 
 export function MultiplayerAvatarGroup(props: MultiplayerAvatarGroupProps) {
@@ -14,7 +14,7 @@ export function MultiplayerAvatarGroup(props: MultiplayerAvatarGroupProps) {
 
   return (
     <_Root>
-      {props.children.map((c, i) => {
+      {props.children?.map((c, i) => {
         return (
           <Positioned key={i} spacing={props.spacing}>
             {c}
