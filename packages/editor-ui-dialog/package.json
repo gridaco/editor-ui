@@ -3,6 +3,7 @@
     "version": "0.0.0",
     "main": "index.ts",
     "dependencies": {
-        "@radix-ui/react-dialog": "^0.0.19"
+        "@radix-ui/react-dialog": "^0.0.19",
+        "react-modal-promise": "^0.7.6"
     }
 }
