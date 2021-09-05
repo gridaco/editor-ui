@@ -18,6 +18,7 @@ export const colors = {
   codeBackground: "rgb(250, 250, 250)",
   selectedBackground: "rgb(242, 245, 250)",
   activeBackground: "rgba(0,0,0,0.1)",
+  dragOutline: "#A6A6A6",
   banner: {
     top: "rgb(222, 229, 255)",
     bottom: "rgba(252, 252, 254, 1)",
