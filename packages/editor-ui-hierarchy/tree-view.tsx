@@ -9,7 +9,7 @@ import React, {
 } from "react";
 import { ChevronDownIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import styled from "@emotion/styled";
-import * as ListView from "@editor-ui/listview";
+import { ListView } from "@editor-ui/listview";
 import { ListViewRowProps } from "@editor-ui/listview";
 import * as Spacer from "@editor-ui/spacer";
 
@@ -29,8 +29,9 @@ const ChevronContainer = styled.span({
   alignItems: "center",
 });
 
-export type TreeRowProps<MenuItemType extends string> =
-  ListViewRowProps<MenuItemType> & TreeRowBaseProps;
+export type TreeRowProps<
+  MenuItemType extends string
+> = ListViewRowProps<MenuItemType> & TreeRowBaseProps;
 
 const TreeRow = forwardRef(function TreeRow<MenuItemType extends string>(
   {
