@@ -1,0 +1,9 @@
+{
+    "name": "@editor-ui/scroll-area",
+    "description": "Scroll area component abstraction",
+    "authors": "Grida.co",
+    "version": "0.0.0",
+    "dependencies": {
+        "@radix-ui/react-scroll-area": "^0.0.16"
+    }
+}
