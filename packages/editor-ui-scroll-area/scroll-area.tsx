@@ -1,6 +1,6 @@
 import * as RadixScrollArea from "@radix-ui/react-scroll-area";
 import { ReactNode, useCallback, useState } from "react";
-import styled from "@emotion/styled";
+import styled from "@editor-ui/theme";
 
 const SCROLLBAR_SIZE = 10;
 
