@@ -1,3 +1,4 @@
+import React from "react";
 import { composeRefs } from "@radix-ui/react-compose-refs";
 import { array } from "@reflect-ui/uiutils";
 import {
@@ -258,7 +259,7 @@ const ListViewRow = forwardRef(function ListViewRow<
     onDoubleClick,
     onHoverChange,
     children,
-    menuItems,
+    // menuItems,
     onContextMenu,
     onSelectMenuItem,
   }: ListViewRowProps<MenuItemType>,
@@ -338,16 +339,16 @@ const ListViewRow = forwardRef(function ListViewRow<
       </RowContainer>
     );
 
-    if (menuItems && onSelectMenuItem) {
-      return (
-        <ContextMenu<MenuItemType>
-          items={menuItems}
-          onSelect={onSelectMenuItem}
-        >
-          {element}
-        </ContextMenu>
-      );
-    }
+    // if (menuItems && onSelectMenuItem) {
+    //   return (
+    //     <ContextMenu<MenuItemType>
+    //       items={menuItems}
+    //       onSelect={onSelectMenuItem}
+    //     >
+    //       {element}
+    //     </ContextMenu>
+    //   );
+    // }
 
     return element;
   };
@@ -706,7 +707,7 @@ const ListViewRootInner = forwardRef(function ListViewRootInner<T>(
       {withScrollable((scrollElementRef: HTMLDivElement | null) =>
         withSortable(
           virtualized ? (
-            <VirtualizedList<T>
+            <VirtualizedList
               ref={forwardedRef}
               scrollElement={scrollElementRef!}
               items={data}
