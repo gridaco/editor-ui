@@ -2,10 +2,10 @@
     "name": "@editor-ui/sortable",
     "version": "0.0.0",
     "dependencies": {
-        "@dnd-kit/core": "^2.1.2",
-        "@dnd-kit/modifiers": "^1.0.5",
-        "@dnd-kit/sortable": "^2.0.1",
-        "@dnd-kit/utilities": "^1.0.3",
+        "@dnd-kit/core": "^3.1.1",
+        "@dnd-kit/modifiers": "^3.0.0",
+        "@dnd-kit/sortable": "^4.0.0",
+        "@dnd-kit/utilities": "^2.0.0",
         "@editor-ui/foundation": "0.0.0"
     }
 }
