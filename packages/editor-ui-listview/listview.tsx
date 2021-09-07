@@ -1,53 +1,57 @@
-import React, {
+import { composeRefs } from "@radix-ui/react-compose-refs";
+import { array } from "@reflect-ui/uiutils";
+import {
   Children,
   createContext,
+  CSSProperties,
   ForwardedRef,
   forwardRef,
   isValidElement,
   memo,
+  ReactElement,
   ReactNode,
   Ref,
   useCallback,
   useContext,
+  useImperativeHandle,
+  useLayoutEffect,
+  useMemo,
+  useRef,
 } from "react";
-import { composeRefs } from "@radix-ui/react-compose-refs";
-import { CSSObject } from "@emotion/styled";
-import styled from "@editor-ui/theme";
-import { useTheme } from "@emotion/react";
+import { WindowScroller } from "react-virtualized";
+import { ListChildComponentProps, VariableSizeList } from "react-window";
+// import { InputField } from "..";
+import { Spacer } from "@editor-ui/spacer";
 import { useHover } from "@editor-ui/hooks";
-
-import * as ContextMenu from "@editor-ui/context-menu";
-import { ContextMenuRoot } from "@editor-ui/context-menu";
-
+import { mergeEventHandlers } from "@editor-ui/utils";
+import { ContextMenuRoot as ContextMenu } from "@editor-ui/context-menu";
+// import { MenuItem } from "./internal/Menu";
+import ScrollArea from "@editor-ui/scroll-area";
 import * as Sortable from "@editor-ui/sortable";
+import styled from "@editor-ui/theme";
 
+export type ListRowMarginType = "none" | "top" | "bottom" | "vertical";
 export type ListRowPosition = "only" | "first" | "middle" | "last";
 
-const listReset: CSSObject = {
-  marginTop: 0,
-  marginRight: 0,
-  marginBottom: 0,
-  marginLeft: 0,
-  paddingTop: 0,
-  paddingRight: 0,
-  paddingBottom: 0,
-  paddingLeft: 0,
-  textIndent: 0,
-  listStyleType: "none",
-};
+type Size = { width: number; height: number };
+type PressEventName = "onClick" | "onPointerDown";
 
 type ListRowContextValue = {
-  position: ListRowPosition;
+  marginType: ListRowMarginType;
   selectedPosition: ListRowPosition;
   sortable: boolean;
   expandable: boolean;
+  indentation: number;
+  pressEventName: PressEventName;
 };
 
 export const ListRowContext = createContext<ListRowContextValue>({
-  position: "only",
+  marginType: "none",
   selectedPosition: "only",
   sortable: false,
   expandable: true,
+  indentation: 12,
+  pressEventName: "onClick",
 });
 
 /* ----------------------------------------------------------------------------
@@ -62,84 +66,155 @@ const ListViewRowTitle = styled.span(({ theme }) => ({
 }));
 
 /* ----------------------------------------------------------------------------
+ * EditableRowTitle
+ * ------------------------------------------------------------------------- */
+
+interface EditableRowProps {
+  value: string;
+  onSubmitEditing: (value: string) => void;
+  autoFocus: boolean;
+}
+
+// function ListViewEditableRowTitle({
+//   value,
+//   onSubmitEditing,
+//   autoFocus,
+// }: EditableRowProps) {
+//   const inputRef = useRef<HTMLInputElement | null>(null);
+
+//   useLayoutEffect(() => {
+//     const element = inputRef.current;
+
+//     if (!element || !autoFocus) return;
+
+//     // Calling `focus` is necessary, in addition to `select`, to ensure
+//     // the `onBlur` fires correctly.
+//     element.focus();
+
+//     setTimeout(() => {
+//       element.select();
+//     }, 0);
+//   }, [autoFocus]);
+
+//   return (
+//     <InputField.Input
+//       ref={inputRef}
+//       variant="bare"
+//       value={value}
+//       onSubmit={onSubmitEditing}
+//       allowSubmittingWithSameValue
+//     />
+//   );
+// }
+
+function getPositionMargin(marginType: ListRowMarginType) {
+  return {
+    top: marginType === "top" || marginType === "vertical" ? 8 : 0,
+    bottom: marginType === "bottom" || marginType === "vertical" ? 8 : 0,
+  };
+}
+
+/* ----------------------------------------------------------------------------
  * Row
  * ------------------------------------------------------------------------- */
 
-const SectionHeaderContainer = styled.li<{
-  selected: boolean;
-  disabled: boolean;
-}>(({ theme, selected, disabled }) => ({
-  ...listReset,
-  ...theme.textStyles.small,
-  flex: "0 0 auto",
-  userSelect: "none",
-  cursor: "pointer",
-  fontWeight: 500,
-  paddingTop: "6px",
-  paddingRight: "20px",
-  paddingBottom: "6px",
-  paddingLeft: "20px",
-  borderBottom: `1px solid ${
-    selected ? theme.colors.primaryDark : theme.colors.divider
-  }`,
-  backgroundColor: theme.colors.listView.raisedBackground,
-  ...(disabled && {
-    color: theme.colors.textDisabled,
-  }),
-  ...(selected && {
-    color: "white",
-    backgroundColor: theme.colors.primary,
-  }),
-  display: "flex",
-  alignItems: "center",
-}));
-
-const RowContainer = styled.li<{
-  position: ListRowPosition;
+const RowContainer = styled.div<{
+  marginType: ListRowMarginType;
   selected: boolean;
   selectedPosition: ListRowPosition;
   disabled: boolean;
-}>(({ theme, position, selected, selectedPosition, disabled }) => ({
-  ...listReset,
-  ...theme.textStyles.small,
-  flex: "0 0 auto",
-  userSelect: "none",
-  cursor: "pointer",
-  borderTopRightRadius: "4px",
-  borderTopLeftRadius: "4px",
-  borderBottomRightRadius: "4px",
-  borderBottomLeftRadius: "4px",
-  paddingTop: "6px",
-  paddingRight: "12px",
-  paddingBottom: "6px",
-  paddingLeft: "12px",
-  marginLeft: "8px",
-  marginRight: "8px",
-  ...(disabled && {
-    color: theme.colors.textDisabled,
-  }),
-  ...(selected && {
-    color: "white",
-    backgroundColor: theme.colors.primary,
-  }),
-  display: "flex",
-  alignItems: "center",
-  ...((position === "first" || position === "only") && {
-    marginTop: "8px",
-  }),
-  ...((position === "last" || position === "only") && {
-    marginBottom: "8px",
-  }),
-  ...(selected &&
-    (selectedPosition === "middle" || selectedPosition === "last") && {
-      borderTopRightRadius: "0px",
-      borderTopLeftRadius: "0px",
-    }),
-  ...(selected &&
-    (selectedPosition === "middle" || selectedPosition === "first") && {
-      borderBottomRightRadius: "0px",
-      borderBottomLeftRadius: "0px",
-    }),
+  hovered: boolean;
+  isSectionHeader: boolean;
+  showsActiveState: boolean;
+}>(
+  ({
+    theme,
+    marginType,
+    selected,
+    selectedPosition,
+    disabled,
+    hovered,
+    isSectionHeader,
+    showsActiveState,
+  }) => {
+    const margin = getPositionMargin(marginType);
+    return {
+      ...theme.textStyles.small,
+      ...(isSectionHeader && { fontWeight: 500 }),
+      flex: "0 0 auto",
+      userSelect: "none",
+      cursor: "default",
+      borderRadius: "4px",
+      paddingTop: "6px",
+      paddingRight: "12px",
+      paddingBottom: "6px",
+      paddingLeft: "12px",
+      marginLeft: "8px",
+      marginRight: "8px",
+      marginTop: `${margin.top}px`,
+      marginBottom: `${margin.bottom}px`,
+      color: theme.colors.textMuted,
+      ...(isSectionHeader && {
+        backgroundColor: theme.colors.listView.raisedBackground,
+      }),
+      ...(disabled && {
+        color: theme.colors.textDisabled,
+      }),
+      ...(selected && {
+        color: "white",
+        backgroundColor: theme.colors.primary,
+      }),
+      display: "flex",
+      alignItems: "center",
+      ...(selected &&
+        !isSectionHeader &&
+        (selectedPosition === "middle" || selectedPosition === "last") && {
+          borderTopRightRadius: "0px",
+          borderTopLeftRadius: "0px",
+        }),
+      ...(selected &&
+        !isSectionHeader &&
+        (selectedPosition === "middle" || selectedPosition === "first") && {
+          borderBottomRightRadius: "0px",
+          borderBottomLeftRadius: "0px",
+        }),
+      position: "relative",
+      ...(hovered && {
+        boxShadow: `0 0 0 1px ${theme.colors.primary}`,
+      }),
+      ...(showsActiveState && {
+        "&:active": {
+          backgroundColor: selected
+            ? theme.colors.primaryLight
+            : theme.colors.activeBackground,
+        },
+      }),
+    };
+  }
+);
+
+export const DragIndicatorElement = styled.div<{
+  relativeDropPosition: Sortable.RelativeDropPosition;
+  offsetLeft: number;
+}>(({ theme, relativeDropPosition, offsetLeft }) => ({
+  zIndex: 1,
+  position: "absolute",
+  borderRadius: "3px",
+  ...(relativeDropPosition === "inside"
+    ? {
+        inset: 2,
+        boxShadow: `0 0 0 1px ${theme.colors.sidebar.background}, 0 0 0 3px ${theme.colors.dragOutline}`,
+      }
+    : {
+        top: relativeDropPosition === "above" ? -3 : undefined,
+        bottom: relativeDropPosition === "below" ? -3 : undefined,
+        left: offsetLeft,
+        right: 0,
+        height: 6,
+        background: theme.colors.primary,
+        border: `2px solid white`,
+        boxShadow: "0 0 2px rgba(0,0,0,0.5)",
+      }),
 }));
 
 export interface ListViewClickInfo {
@@ -151,13 +226,18 @@ export interface ListViewClickInfo {
 export interface ListViewRowProps<MenuItemType extends string = string> {
   id?: string;
   selected?: boolean;
+  depth?: number;
   disabled?: boolean;
+  draggable?: boolean;
+  hovered?: boolean;
   sortable?: boolean;
-  onClick?: (info: ListViewClickInfo) => void;
+  onClick?: () => void;
+  onPress?: (info: ListViewClickInfo) => void;
+  onDoubleClick?: () => void;
   onHoverChange?: (isHovering: boolean) => void;
   children?: ReactNode;
   isSectionHeader?: boolean;
-  menuItems?: ContextMenu.MenuItem<MenuItemType>[];
+  //   menuItems?: MenuItem<MenuItemType>[];
   onSelectMenuItem?: (value: MenuItemType) => void;
   onContextMenu?: () => void;
 }
@@ -168,64 +248,104 @@ const ListViewRow = forwardRef(function ListViewRow<
   {
     id,
     selected = false,
+    depth = 0,
     disabled = false,
+    hovered = false,
     isSectionHeader = false,
+    sortable: overrideSortable,
+    onPress,
     onClick,
+    onDoubleClick,
     onHoverChange,
     children,
     menuItems,
     onContextMenu,
     onSelectMenuItem,
   }: ListViewRowProps<MenuItemType>,
-  forwardedRef: ForwardedRef<HTMLLIElement>
+  forwardedRef: ForwardedRef<HTMLElement>
 ) {
-  const { position, selectedPosition, sortable } = useContext(ListRowContext);
+  const {
+    marginType,
+    selectedPosition,
+    sortable,
+    indentation,
+    pressEventName,
+  } = useContext(ListRowContext);
   const { hoverProps } = useHover({
     onHoverChange,
   });
 
-  const handleClick = useCallback(
+  const handlePress = useCallback(
+    (event: React.MouseEvent) => {
+      // We use preventDefault as a hack to mark this event as handled. We check for
+      // this in the ListView.Root. We can't stopPropagation here or existing ContextMenus
+      // won't close (onPointerDownOutside won't fire).
+      event.preventDefault();
+
+      onPress?.(event);
+    },
+    [onPress]
+  );
+
+  const handleDoubleClick = useCallback(
     (event: React.MouseEvent) => {
       event.stopPropagation();
 
-      onClick?.(event);
+      onDoubleClick?.();
     },
-    [onClick]
+    [onDoubleClick]
   );
 
   const renderContent = (
-    renderProps: React.ComponentProps<typeof RowContainer>,
-    ref: Ref<HTMLLIElement>
+    {
+      relativeDropPosition,
+      ...renderProps
+    }: React.ComponentProps<typeof RowContainer> & {
+      relativeDropPosition?: Sortable.RelativeDropPosition;
+    },
+    ref: Ref<HTMLElement>
   ) => {
-    const Component = isSectionHeader ? SectionHeaderContainer : RowContainer;
-
     const element = (
-      <Component
+      <RowContainer
         ref={ref}
         onContextMenu={onContextMenu}
+        isSectionHeader={isSectionHeader}
         id={id}
         {...hoverProps}
-        onClick={handleClick}
-        position={position}
+        onDoubleClick={handleDoubleClick}
+        marginType={marginType}
         disabled={disabled}
+        hovered={hovered}
         selected={selected}
         selectedPosition={selectedPosition}
+        showsActiveState={pressEventName === "onClick"}
         aria-selected={selected}
+        onClick={onClick}
         {...renderProps}
+        {...mergeEventHandlers(
+          { onPointerDown: renderProps.onPointerDown },
+          { [pressEventName]: handlePress }
+        )}
       >
+        {relativeDropPosition && (
+          <DragIndicatorElement
+            relativeDropPosition={relativeDropPosition}
+            offsetLeft={33 + depth * indentation}
+          />
+        )}
+        {depth > 0 && <Spacer.Horizontal size={depth * indentation} />}
         {children}
-      </Component>
+      </RowContainer>
     );
 
-    if (menuItems) {
+    if (menuItems && onSelectMenuItem) {
       return (
-        //@ts-ignore
-        <ContextMenuRoot<MenuItemType>
+        <ContextMenu<MenuItemType>
           items={menuItems}
           onSelect={onSelectMenuItem}
         >
           {element}
-        </ContextMenuRoot>
+        </ContextMenu>
       );
     }
 
@@ -234,137 +354,424 @@ const ListViewRow = forwardRef(function ListViewRow<
 
   if (sortable && id) {
     return (
-      <Sortable.Item id={id}>
+      <Sortable.Item id={id} disabled={overrideSortable === false}>
         {({ ref: sortableRef, ...sortableProps }) =>
           renderContent(sortableProps, composeRefs(sortableRef, forwardedRef))
         }
       </Sortable.Item>
     );
   }
-  //@ts-ignore
+
   return renderContent({}, forwardedRef);
 });
+
+/* ----------------------------------------------------------------------------
+ * VirtualizedListRow
+ * ------------------------------------------------------------------------- */
+
+const RenderItemContext = createContext<(index: number) => ReactNode>(
+  () => null
+);
+
+const VirtualizedListRow = memo(function VirtualizedListRow({
+  index,
+  style,
+}: ListChildComponentProps) {
+  const renderItem = useContext(RenderItemContext);
+
+  return (
+    <div key={index} style={style}>
+      {renderItem(index)}
+    </div>
+  );
+});
+
+/* ----------------------------------------------------------------------------
+ * VirtualizedList
+ * ------------------------------------------------------------------------- */
+
+interface VirtualizedListProps<T> {
+  size: Size;
+  scrollElement: HTMLDivElement;
+  items: T[];
+  getItemHeight: (index: number) => number;
+  keyExtractor: (index: number) => string;
+  renderItem: (index: number) => ReactNode;
+}
+
+export interface IVirtualizedList {
+  scrollToIndex(index: number): void;
+}
+
+const VirtualizedListInner = forwardRef(function VirtualizedListInner<T>(
+  {
+    size,
+    scrollElement,
+    items,
+    getItemHeight,
+    keyExtractor,
+    renderItem,
+  }: VirtualizedListProps<T>,
+  ref: ForwardedRef<IVirtualizedList>
+) {
+  const listRef = useRef<VariableSizeList<T> | null>(null);
+
+  useImperativeHandle(ref, () => ({
+    scrollToIndex(index) {
+      listRef.current?.scrollToItem(index);
+    },
+  }));
+
+  useLayoutEffect(() => {
+    listRef.current?.resetAfterIndex(0);
+  }, [
+    // When items change, we need to re-render the virtualized list,
+    // since it doesn't currently support row height changes
+    items,
+  ]);
+
+  // Internally, react-virtualized updates these properties. We always want
+  // to use our custom scroll element, so we override them. It may update
+  // overflowX/Y individually in addition to `overflow`, so we include all 3.
+  const listStyle = useMemo(
+    (): CSSProperties => ({
+      overflowX: "initial",
+      overflowY: "initial",
+      overflow: "initial",
+    }),
+    []
+  );
+
+  return (
+    <RenderItemContext.Provider value={renderItem}>
+      <WindowScroller
+        scrollElement={scrollElement}
+        style={useMemo(() => ({ flex: "1 1 auto" }), [])}
+      >
+        {useCallback(
+          ({ registerChild, onChildScroll, scrollTop }) => (
+            <div ref={registerChild}>
+              <VariableSizeList<T>
+                ref={listRef}
+                // The list won't update on scroll unless we force it to by changing key
+                key={scrollTop}
+                style={listStyle}
+                itemKey={keyExtractor}
+                onScroll={({ scrollOffset }) => {
+                  onChildScroll({ scrollTop: scrollOffset });
+                }}
+                initialScrollOffset={scrollTop}
+                width={size.width}
+                height={size.height}
+                itemCount={items.length}
+                itemSize={getItemHeight}
+                estimatedItemSize={31}
+              >
+                {VirtualizedListRow}
+              </VariableSizeList>
+            </div>
+          ),
+          [
+            listStyle,
+            keyExtractor,
+            size.width,
+            size.height,
+            items.length,
+            getItemHeight,
+          ]
+        )}
+      </WindowScroller>
+    </RenderItemContext.Provider>
+  );
+});
+
+const VirtualizedList = memo(
+  VirtualizedListInner
+) as typeof VirtualizedListInner;
 
 /* ----------------------------------------------------------------------------
  * Root
  * ------------------------------------------------------------------------- */
 
-const RootContainer = styled.ul<{ scrollable?: boolean }>(
+const RootContainer = styled.div<{ scrollable?: boolean }>(
   ({ theme, scrollable }) => ({
-    ...listReset,
     flex: scrollable ? "1 0 0" : "0 0 auto",
     display: "flex",
     flexDirection: "column",
     flexWrap: "nowrap",
     color: theme.colors.textMuted,
-    overflowY: scrollable ? "auto" : "visible",
   })
 );
 
-interface ListViewRootProps {
-  children?: ReactNode;
-  onClick?: () => void;
+export type ItemInfo = {
+  isDragging: boolean;
+};
+
+type ChildrenProps = {
+  children: ReactNode;
+};
+
+type RenderProps<T> = {
+  data: T[];
+  renderItem: (item: T, index: number, info: ItemInfo) => ReactNode;
+  keyExtractor: (item: T, index: number) => string;
   sortable?: boolean;
+  virtualized?: Size;
+};
+
+type ListViewRootProps = {
+  onPress?: () => void;
   scrollable?: boolean;
   expandable?: boolean;
-  onMoveItem?: (sourceIndex: number, destinationIndex: number) => void;
-}
+  onMoveItem?: (
+    sourceIndex: number,
+    destinationIndex: number,
+    position: Sortable.RelativeDropPosition
+  ) => void;
+  indentation?: number;
+  acceptsDrop?: Sortable.DropValidator;
+  pressEventName?: PressEventName;
+};
 
-function ListViewRoot({
-  onClick,
-  children,
-  sortable = false,
-  scrollable = false,
-  expandable = true,
-  onMoveItem,
-}: ListViewRootProps) {
-  const theme = useTheme();
-
+const ListViewRootInner = forwardRef(function ListViewRootInner<T>(
+  {
+    onPress,
+    scrollable = false,
+    expandable = true,
+    sortable = false,
+    onMoveItem,
+    indentation = 12,
+    acceptsDrop,
+    data,
+    renderItem,
+    keyExtractor,
+    virtualized,
+    pressEventName = "onClick",
+  }: RenderProps<T> & ListViewRootProps,
+  forwardedRef: ForwardedRef<IVirtualizedList>
+) {
   const handleClick = useCallback(
     (event: React.MouseEvent) => {
-      event.stopPropagation();
+      if (
+        event.target instanceof HTMLElement &&
+        event.target.classList.contains("scroll-component")
+      )
+        return;
 
-      onClick?.();
-    },
-    [onClick]
-  );
-
-  const flattened = Children.toArray(children);
-
-  const ids: string[] = flattened.flatMap((current) =>
-    isValidElement(current) && typeof current.props.id === "string"
-      ? [current.props.id]
-      : []
-  );
-
-  const mappedChildren = flattened.map((current, i) => {
-    if (!isValidElement(current)) return current;
-
-    const prev = flattened[i - 1];
-    const next = flattened[i + 1];
-
-    const nextItem =
-      isValidElement(next) && !next.props.isSectionHeader ? next : undefined;
-    const prevItem =
-      isValidElement(prev) && !prev.props.isSectionHeader ? prev : undefined;
-
-    let position: ListRowPosition = "only";
-    let selectedPosition: ListRowPosition = "only";
-
-    if (nextItem && prevItem) {
-      position = "middle";
-    } else if (nextItem && !prevItem) {
-      position = "first";
-    } else if (!nextItem && prevItem) {
-      position = "last";
-    }
-
-    if (current.props.selected) {
-      const nextSelected = nextItem && nextItem.props.selected;
-      const prevSelected = prevItem && prevItem.props.selected;
-
-      if (nextSelected && prevSelected) {
-        selectedPosition = "middle";
-      } else if (nextSelected && !prevSelected) {
-        selectedPosition = "first";
-      } else if (!nextSelected && prevSelected) {
-        selectedPosition = "last";
+      // As a hack, we call preventDefault in a row if the event was handled.
+      // If the event wasn't handled already, we call onPress here.
+      if (!event.isDefaultPrevented()) {
+        onPress?.();
       }
-    }
+    },
+    [onPress]
+  );
 
-    const contextValue = {
-      position,
-      selectedPosition,
+  const renderChild = useCallback(
+    (index: number) => renderItem(data[index], index, { isDragging: false }),
+    [data, renderItem]
+  );
+
+  const renderOverlay = useCallback(
+    (index: number) => renderItem(data[index], index, { isDragging: true }),
+    [renderItem, data]
+  );
+
+  const getItemContextValue = useCallback(
+    (i: number): ListRowContextValue | undefined => {
+      const current = renderChild(i);
+
+      if (!isValidElement(current)) return;
+
+      const prevChild = i - 1 >= 0 && renderChild(i - 1);
+      const nextChild = i + 1 < data.length && renderChild(i + 1);
+
+      const next = isValidElement(nextChild) ? nextChild : undefined;
+      const prev = isValidElement(prevChild) ? prevChild : undefined;
+
+      const hasMarginTop = !prev;
+      const hasMarginBottom =
+        !next ||
+        current.props.isSectionHeader ||
+        (next && next.props.isSectionHeader);
+
+      let marginType: ListRowMarginType;
+
+      if (hasMarginTop && hasMarginBottom) {
+        marginType = "vertical";
+      } else if (hasMarginBottom) {
+        marginType = "bottom";
+      } else if (hasMarginTop) {
+        marginType = "top";
+      } else {
+        marginType = "none";
+      }
+
+      let selectedPosition: ListRowPosition = "only";
+
+      if (current.props.selected) {
+        const nextSelected =
+          next && !next.props.isSectionHeader && next.props.selected;
+        const prevSelected =
+          prev && !prev.props.isSectionHeader && prev.props.selected;
+
+        if (nextSelected && prevSelected) {
+          selectedPosition = "middle";
+        } else if (nextSelected && !prevSelected) {
+          selectedPosition = "first";
+        } else if (!nextSelected && prevSelected) {
+          selectedPosition = "last";
+        }
+      }
+
+      return {
+        marginType,
+        selectedPosition,
+        sortable,
+        expandable,
+        indentation,
+        pressEventName,
+      };
+    },
+    [
+      renderChild,
+      data.length,
       sortable,
       expandable,
-    };
+      indentation,
+      pressEventName,
+    ]
+  );
 
-    return (
-      <ListRowContext.Provider key={current.key} value={contextValue}>
-        {current}
-      </ListRowContext.Provider>
-    );
-  });
+  const renderWrappedChild = useCallback(
+    (index: number) => {
+      const contextValue = getItemContextValue(index);
+      const current = renderChild(index);
 
-  if (sortable && ids.length !== mappedChildren.length) {
-    throw new Error(
-      "Bad ListView props: each row element needs an id to be sortable"
+      if (!contextValue || !isValidElement(current)) return null;
+
+      return (
+        <ListRowContext.Provider key={current.key} value={contextValue}>
+          {current}
+        </ListRowContext.Provider>
+      );
+    },
+    [getItemContextValue, renderChild]
+  );
+
+  const ids = useMemo(() => data.map(keyExtractor), [keyExtractor, data]);
+
+  const withSortable = (children: ReactNode) =>
+    sortable ? (
+      <Sortable.Root
+        onMoveItem={onMoveItem}
+        keys={ids}
+        renderOverlay={renderOverlay}
+        acceptsDrop={acceptsDrop}
+      >
+        {children}
+      </Sortable.Root>
+    ) : (
+      children
     );
-  }
+
+  const withScrollable = (
+    children: (scrollElementRef: HTMLDivElement | null) => ReactNode
+  ) => (scrollable ? <ScrollArea>{children}</ScrollArea> : children(null));
+
+  const getItemHeight = useCallback(
+    (index: number) => {
+      const child = getItemContextValue(index);
+      const margin = child?.marginType
+        ? getPositionMargin(child.marginType)
+        : { top: 0, bottom: 0 };
+      const height = margin.top + 31 + margin.bottom;
+      return height;
+    },
+    [getItemContextValue]
+  );
+
+  const getKey = useCallback(
+    (index: number) => keyExtractor(data[index], index),
+    [data, keyExtractor]
+  );
 
   return (
-    <RootContainer onClick={handleClick} scrollable={scrollable}>
-      {sortable ? (
-        <Sortable.Root onMoveItem={onMoveItem} keys={ids}>
-          {mappedChildren}
-        </Sortable.Root>
-      ) : (
-        mappedChildren
+    <RootContainer
+      {...{
+        [pressEventName]: handleClick,
+      }}
+      scrollable={scrollable}
+    >
+      {withScrollable((scrollElementRef: HTMLDivElement | null) =>
+        withSortable(
+          virtualized ? (
+            <VirtualizedList<T>
+              ref={forwardedRef}
+              scrollElement={scrollElementRef!}
+              items={data}
+              size={virtualized}
+              getItemHeight={getItemHeight}
+              keyExtractor={getKey}
+              renderItem={renderWrappedChild}
+            />
+          ) : (
+            array.makeRangeArray(0, data.length).map(renderWrappedChild)
+          )
+        )
       )}
     </RootContainer>
   );
-}
+});
+
+const ListViewRoot = memo(ListViewRootInner) as typeof ListViewRootInner;
+
+const ChildrenListViewInner = forwardRef(function ChildrenListViewInner(
+  { children, ...rest }: ChildrenProps & ListViewRootProps,
+  forwardedRef: ForwardedRef<IVirtualizedList>
+) {
+  const items: ReactElement[] = useMemo(
+    () =>
+      Children.toArray(children).flatMap((child) =>
+        isValidElement(child) ? [child] : []
+      ),
+    [children]
+  );
+
+  return (
+    <ListViewRoot
+      ref={forwardedRef}
+      {...rest}
+      data={items}
+      keyExtractor={useCallback(
+        ({ key }: { key: string | number | null }, index: number) =>
+          typeof key === "string" ? key : (key ?? index).toString(),
+        []
+      )}
+      renderItem={useCallback((item: ReactElement) => item, [])}
+    />
+  );
+});
+
+const ChildrenListView = memo(ChildrenListViewInner);
+
+const SimpleListViewInner = forwardRef(function SimpleListView<T = any>(
+  props: (ChildrenProps | RenderProps<T>) & ListViewRootProps,
+  forwardedRef: ForwardedRef<IVirtualizedList>
+) {
+  if ("children" in props) {
+    return <ChildrenListView ref={forwardedRef} {...props} />;
+  } else {
+    return <ListViewRoot ref={forwardedRef} {...props} />;
+  }
+});
+
+/**
+ * A ListView can be created either with `children` or render props
+ */
+const SimpleListView = memo(SimpleListViewInner);
 
 export const RowTitle = memo(ListViewRowTitle);
+// export const EditableRowTitle = memo(ListViewEditableRowTitle);
 export const Row = memo(ListViewRow);
-export const Root = memo(ListViewRoot);
+export const Root = memo(SimpleListView);

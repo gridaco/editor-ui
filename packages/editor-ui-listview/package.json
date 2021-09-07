@@ -2,6 +2,12 @@
     "name": "@editor-ui/listview",
     "version": "0.0.0",
     "dependencies": {
-        "@editor-ui/foundation": "0.0.0"
+        "@editor-ui/foundation": "0.0.0",
+        "react-virtualized": "^9.22.3",
+        "react-window": "^1.8.6"
+    },
+    "devDependencies": {
+        "@types/react-virtualized": "^9.21.13",
+        "@types/react-window": "^1.8.5"
     }
 }
