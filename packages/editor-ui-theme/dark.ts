@@ -2,6 +2,7 @@ import produce from "immer";
 import * as lightTheme from "./light";
 
 export const colors = produce(lightTheme.colors, (colors) => {
+  colors.primary = "rgb(81, 78, 253)";
   colors.text = "rgb(248,248,250)";
   colors.textMuted = "rgb(180,180,180)";
   colors.textDisabled = "rgb(100,100,100)";
