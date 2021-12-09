@@ -107,9 +107,8 @@ function SortableItem<T extends HTMLElement = HTMLElement>({
   disabled,
   children,
 }: ItemProps<T>) {
-  const { position, acceptsDrop, setActivatorEvent } = useContext(
-    SortableItemContext
-  );
+  const { position, acceptsDrop, setActivatorEvent } =
+    useContext(SortableItemContext);
   const sortable = useSortable({ id, disabled });
 
   const {
@@ -174,6 +173,11 @@ function SortableRoot({
   renderOverlay,
   acceptsDrop = defaultAcceptsDrop,
 }: RootProps) {
+  const [_document, set_document] = React.useState(null);
+  React.useEffect(() => {
+    set_document(document);
+  }, []);
+
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -254,11 +258,12 @@ function SortableRoot({
           {children}
         </SortableContext>
         {renderOverlay &&
+          _document &&
           createPortal(
             <DragOverlay dropAnimation={null}>
               {activeIndex !== undefined && renderOverlay(activeIndex)}
             </DragOverlay>,
-            document.body
+            _document.body
           )}
       </DndContext>
     </SortableItemContext.Provider>
