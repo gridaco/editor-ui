@@ -1,5 +1,6 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
-import * as React from "react";
+import React from "react";
 import { keyframes, css, jsx, SerializedStyles } from "@emotion/react";
 import { sizeMarginDefaults } from "./helpers";
 import { LoaderSizeMarginProps } from "./interfaces";
