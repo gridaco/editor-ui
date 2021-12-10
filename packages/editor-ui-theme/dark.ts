@@ -1,7 +1,7 @@
-import produce from "immer";
+// import produce from "immer";
 import * as lightTheme from "./light";
 
-export const colors = produce(lightTheme.colors, (colors) => {
+export const colors = (colors) => {
   colors.primary = "rgb(81, 78, 253)";
   colors.text = "rgb(248,248,250)";
   colors.textMuted = "rgb(180,180,180)";
@@ -15,13 +15,15 @@ export const colors = produce(lightTheme.colors, (colors) => {
   colors.listView.raisedBackground = "rgba(255,255,255,0.1)";
   colors.slider.background = "#BBB";
   colors.mask = "rgb(102,187,106)";
-});
+  return colors;
+};
+
 export const textStyles = lightTheme.textStyles;
 export const fonts = lightTheme.fonts;
 export const sizes = lightTheme.sizes;
 
 export const dark = {
-  colors: colors,
+  colors: colors({ ...lightTheme.colors }),
   fonts: fonts,
   textStyles: textStyles,
   sizes: sizes,

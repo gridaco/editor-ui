@@ -27,8 +27,21 @@ export function EditorThemeProvider(props: {
    * 3. use dark props
    * 4. otherwise, fallback to light
    */
-  const themename = props?.theme ?? props.light ?? props.dark ?? "light";
-  const themedata = themename ? light : dark;
+  const themename =
+    props?.theme ??
+    (props.light && "light") ??
+    (props.dark && "dark") ??
+    "light";
+
+  const themedata =
+    typeof themename == "boolean"
+      ? themename
+        ? light
+        : dark
+      : themename == "light"
+      ? light
+      : dark;
+
   return (
     <_ThemeProvider theme={themedata}>
       {props.debug && <ThemeDebugger />}
