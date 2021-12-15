@@ -122,6 +122,7 @@ function getPositionMargin(marginType: ListRowMarginType) {
 const RowContainer = styled.div<{
   marginType: ListRowMarginType;
   selected: boolean;
+  selectedColor?: string;
   selectedPosition: ListRowPosition;
   disabled: boolean;
   hovered: boolean;
@@ -132,6 +133,7 @@ const RowContainer = styled.div<{
     theme,
     marginType,
     selected,
+    selectedColor,
     selectedPosition,
     disabled,
     hovered,
@@ -163,7 +165,7 @@ const RowContainer = styled.div<{
       }),
       ...(selected && {
         color: "white",
-        backgroundColor: theme.colors.primary,
+        backgroundColor: selectedColor ?? theme.colors.primary,
       }),
       display: "flex",
       alignItems: "center",
@@ -227,6 +229,11 @@ export interface ListViewClickInfo {
 export interface ListViewRowProps<MenuItemType extends string = string> {
   id?: string;
   selected?: boolean;
+  /**
+   * optional custom override selected color.
+   * if not provided, it will use theme's selected color instead.
+   */
+  selectedColor?: string;
   depth?: number;
   disabled?: boolean;
   draggable?: boolean;
@@ -249,6 +256,7 @@ const ListViewRow = forwardRef(function ListViewRow<
   {
     id,
     selected = false,
+    selectedColor,
     depth = 0,
     disabled = false,
     hovered = false,
@@ -318,6 +326,7 @@ const ListViewRow = forwardRef(function ListViewRow<
         disabled={disabled}
         hovered={hovered}
         selected={selected}
+        selectedColor={selectedColor}
         selectedPosition={selectedPosition}
         showsActiveState={pressEventName === "onClick"}
         aria-selected={selected}
