@@ -26,7 +26,7 @@ import { Spacer } from "@editor-ui/spacer";
 import { useHover } from "@editor-ui/hooks";
 import { mergeEventHandlers } from "@editor-ui/utils";
 import { ContextMenuRoot as ContextMenu } from "@editor-ui/context-menu";
-// import { MenuItem } from "./internal/Menu";
+import type { MenuItem } from "@editor-ui/context-menu";
 import ScrollArea from "@editor-ui/scroll-area";
 import * as Sortable from "@editor-ui/sortable";
 import styled from "@editor-ui/theme";
@@ -245,7 +245,7 @@ export interface ListViewRowProps<MenuItemType extends string = string> {
   onHoverChange?: (isHovering: boolean) => void;
   children?: ReactNode;
   isSectionHeader?: boolean;
-  //   menuItems?: MenuItem<MenuItemType>[];
+  menuItems?: MenuItem<MenuItemType>[];
   onSelectMenuItem?: (value: MenuItemType) => void;
   onContextMenu?: () => void;
 }
@@ -267,7 +267,7 @@ const ListViewRow = forwardRef(function ListViewRow<
     onDoubleClick,
     onHoverChange,
     children,
-    // menuItems,
+    menuItems,
     onContextMenu,
     onSelectMenuItem,
   }: ListViewRowProps<MenuItemType>,
@@ -348,16 +348,13 @@ const ListViewRow = forwardRef(function ListViewRow<
       </RowContainer>
     );
 
-    // if (menuItems && onSelectMenuItem) {
-    //   return (
-    //     <ContextMenu<MenuItemType>
-    //       items={menuItems}
-    //       onSelect={onSelectMenuItem}
-    //     >
-    //       {element}
-    //     </ContextMenu>
-    //   );
-    // }
+    if (menuItems?.length && onSelectMenuItem) {
+      return (
+        <ContextMenu items={menuItems} onSelect={onSelectMenuItem}>
+          {element}
+        </ContextMenu>
+      );
+    }
 
     return element;
   };
