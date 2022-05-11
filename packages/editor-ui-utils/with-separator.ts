@@ -22,7 +22,7 @@ export function withSeparatorElements(
       sep = cloneElement(sep, { key: createKey(i) });
     }
 
-    childrenArray.splice(i, 0, sep);
+    childrenArray.splice(i, 0, sep as any);
   }
 
   return childrenArray;

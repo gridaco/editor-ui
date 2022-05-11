@@ -20,6 +20,7 @@ interface Props {
 
 export const Tooltip = memo(function Tooltip({ children, content }: Props) {
   return (
+    // @ts-ignore
     <TooltipPrimitive.Root>
       <TooltipPrimitive.Trigger as={Slot}>{children}</TooltipPrimitive.Trigger>
       <Content side="bottom" align="center" sideOffset={2}>

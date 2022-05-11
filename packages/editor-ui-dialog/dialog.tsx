@@ -1,6 +1,5 @@
 import React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { Cross1Icon } from "@radix-ui/react-icons";
 import styled from "@emotion/styled";
 
 const StyledOverlay = styled(DialogPrimitive.Overlay)`
@@ -33,6 +32,7 @@ const StyledContent = styled(DialogPrimitive.Content)`
 
 export function Dialog({ children, ...props }) {
   return (
+    // @ts-ignore
     <DialogPrimitive.Root {...props}>
       <StyledOverlay />
 
@@ -42,6 +42,7 @@ export function Dialog({ children, ...props }) {
 }
 
 export const DialogContent = React.forwardRef(
+  // @ts-ignore
   ({ children, ...props }, forwardedRef) => (
     <StyledContent
       {...props}

@@ -247,6 +247,7 @@ function SortableRoot({
         [acceptsDrop, position, setActivatorEvent]
       )}
     >
+      {/* @ts-ignore */}
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}

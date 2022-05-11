@@ -451,12 +451,14 @@ const VirtualizedListInner = forwardRef(function VirtualizedListInner<T>(
 
   return (
     <RenderItemContext.Provider value={renderItem}>
+      {/* @ts-ignore */}
       <WindowScroller
         scrollElement={scrollElement}
         style={useMemo(() => ({ flex: "1 1 auto" }), [])}
       >
         {useCallback(
           ({ registerChild, onChildScroll, scrollTop }) => (
+            // @ts-ignore
             <div ref={registerChild}>
               <VariableSizeList<T>
                 ref={listRef}
