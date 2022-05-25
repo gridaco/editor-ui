@@ -1,0 +1,7 @@
+{
+  "name": "@editor-ui/alert-dialog",
+  "version": "0.0.0",
+  "dependencies": {
+    "@radix-ui/react-alert-dialog": "^0.1.7"
+  }
+}
