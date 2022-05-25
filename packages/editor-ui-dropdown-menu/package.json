@@ -1,0 +1,8 @@
+{
+  "name": "@editor-ui/dropdown-menu",
+  "version": "0.0.0",
+  "private": false,
+  "dependencies": {
+    "@radix-ui/react-dropdown-menu": "^0.1.6"
+  }
+}
