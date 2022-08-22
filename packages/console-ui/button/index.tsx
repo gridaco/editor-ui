@@ -19,7 +19,7 @@ export function Button({
   children,
   disabled,
 }: {
-  onClick?: () => void;
+  onClick?: (e?) => void;
   color?: "white" | "black" | "red";
   disabled?: boolean;
   width?: React.CSSProperties["width"];
@@ -29,8 +29,8 @@ export function Button({
     <ButtonBase
       onClick={onClick}
       disabled={disabled}
-      width={width || "100%"}
-      height={height || "100%"}
+      width={width || "auto"}
+      height={height || "auto"}
       textColor={textcolormap[color]}
       backgroundColor={bgcolormap[color]}
     >
@@ -43,10 +43,6 @@ const ButtonBase = styled.button<{ width; height; textColor; backgroundColor }>`
   cursor: pointer;
   border: none;
   outline: none;
-  justify-content: center;
-  flex-direction: row;
-  align-items: center;
-  flex: 1;
   border-radius: 2px;
   align-self: stretch;
   width: ${(props) => props.width};
@@ -54,7 +50,6 @@ const ButtonBase = styled.button<{ width; height; textColor; backgroundColor }>`
   background-color: ${(props) => props.backgroundColor};
   box-sizing: border-box;
   padding: 6px 16px;
-  flex-shrink: 0;
 
   :disabled {
     cursor: not-allowed;

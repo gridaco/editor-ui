@@ -46,7 +46,6 @@ const BaseTextField = styled.input`
   justify-content: flex-start;
   flex-direction: row;
   align-items: flex-start;
-  flex: 1;
   border: solid 1px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   box-sizing: border-box;
