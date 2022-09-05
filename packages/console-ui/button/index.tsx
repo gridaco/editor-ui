@@ -40,6 +40,7 @@ export function Button({
 }
 
 const ButtonBase = styled.button<{ width; height; textColor; backgroundColor }>`
+  user-select: none;
   cursor: pointer;
   border: none;
   outline: none;
