@@ -1,7 +1,14 @@
 {
     "name": "@editor-ui/property",
     "version": "0.0.0",
+    "scripts": {
+        "storybook": "start-storybook -p 6006",
+        "build-storybook": "build-storybook"
+    },
     "dependencies": {
         "@editor-ui/foundation": "0.0.0"
+    },
+    "peerDependencies": {
+        "react": "^18.2.0"
     }
 }
