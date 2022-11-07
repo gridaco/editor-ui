@@ -32,9 +32,11 @@ export const ContextMenuRoot = memo(function ContextMenuRoot<T extends string>({
     // @ts-ignore
     <ContextMenu.Root>
       <ContextMenu.Trigger as={Slot}>{children}</ContextMenu.Trigger>
+      {/* @ts-ignore */}
       <RootElement>
         {items.map((item, index) =>
           item === SEPARATOR_ITEM ? (
+            // @ts-ignore
             <ContextMenuSeparator key={index} />
           ) : (
             <ContextMenuItem

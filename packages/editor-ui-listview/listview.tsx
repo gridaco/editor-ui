@@ -602,7 +602,7 @@ const ListViewRootInner = forwardRef(function ListViewRootInner<T>(
       const hasMarginBottom =
         !next ||
         current.props.isSectionHeader ||
-        (next && next.props.isSectionHeader);
+        (next && next.props["isSectionHeader"]);
 
       let marginType: ListRowMarginType;
 
@@ -620,9 +620,9 @@ const ListViewRootInner = forwardRef(function ListViewRootInner<T>(
 
       if (current.props.selected) {
         const nextSelected =
-          next && !next.props.isSectionHeader && next.props.selected;
+          next && !next.props["isSectionHeader"] && next.props["selected"];
         const prevSelected =
-          prev && !prev.props.isSectionHeader && prev.props.selected;
+          prev && !prev.props["isSectionHeader"] && prev.props["selected"];
 
         if (nextSelected && prevSelected) {
           selectedPosition = "middle";
