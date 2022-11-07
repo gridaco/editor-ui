@@ -94,6 +94,7 @@ export function PropertyInput({
       onClick={onclick}
       outline={focused ? `1px solid ${theme.input.border.focus}` : "none"}
       height={24}
+      minWidth={44}
     >
       {prefix && <Prefix>{prefix}</Prefix>}
       <PlainInput
@@ -143,6 +144,7 @@ const PlainInput = styled.input`
 
 const _fix = css`
   cursor: default;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;

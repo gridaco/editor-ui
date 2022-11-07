@@ -18,18 +18,18 @@ const Line = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 24px;
 `;
 
 const Items = styled.div`
   display: flex;
-  flex: 1;
+  flex: 7;
   gap: 8px;
 `;
 
 const Label = styled.label`
   max-width: 80px;
-  flex: 1;
+  flex: 2;
+  margin-right: 16px;
   font-family: Inter, sans-serif;
   font-size: 11px;
   color: #999;
