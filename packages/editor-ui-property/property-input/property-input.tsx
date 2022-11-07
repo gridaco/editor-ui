@@ -15,7 +15,9 @@ export function PropertyInput({
   type = "text",
   value: initial = "",
   readonly,
+  disabled,
   onChange,
+  onClick,
 }: {
   prefix?: React.ReactNode;
   suffix?: React.ReactNode;
@@ -23,12 +25,21 @@ export function PropertyInput({
   type?: PropertyInputType;
   value?: string;
   readonly?: boolean;
+  disabled?: boolean;
   onChange?: (value: string) => void;
+  onClick?: () => void;
 }) {
   const [focused, setFocused] = React.useState(false);
   const [value, setValue] = React.useState(initial);
   const theme = useTheme();
   const inputRef = React.useRef<HTMLInputElement>(null);
+
+  const onclick = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+    onClick?.();
+  };
 
   const onvalue = (value: string) => {
     setValue(value);
@@ -60,22 +71,33 @@ export function PropertyInput({
     // up or down key ally
     if (type === "number" && (e.key === "ArrowUp" || e.key === "ArrowDown")) {
       // if shift key is pressed, increase or decrease by 10
-      const step = e.shiftKey ? 10 : 1;
+      // if ctrl / cmd key is pressed, increase or decrease by 0.1
+      // if both shift and ctrl / cmd key is pressed, increase or decrease by 100
+      const step = e.shiftKey
+        ? e.ctrlKey || e.metaKey
+          ? 100
+          : 10
+        : e.ctrlKey || e.metaKey
+        ? 0.1
+        : 1;
+
       const value = Number(inputRef.current?.value);
       const newValue = e.key === "ArrowUp" ? value + step : value - step;
-      onvalue(String(newValue));
+      onvalue("" + newValue);
     }
   };
 
   return (
     <PropertyCell
       background={theme.input.bg}
+      onClick={onclick}
       outline={focused ? `1px solid ${theme.input.border.focus}` : "none"}
     >
       {prefix && <Prefix>{prefix}</Prefix>}
       <PlainInput
         ref={inputRef}
         readOnly={readonly}
+        disabled={disabled}
         onFocusCapture={onfocuscapture}
         type={type}
         value={value}
@@ -118,6 +140,7 @@ const PlainInput = styled.input`
 `;
 
 const _fix = css`
+  cursor: default;
   display: flex;
   align-items: center;
   justify-content: center;

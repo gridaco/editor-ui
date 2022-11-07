@@ -17,3 +17,12 @@ export const WithSuffix = () => (
 export const TypeNumber = () => (
   <PropertyInput type="number" suffix={"X"} placeholder={"Pos"} />
 );
+
+export const WithReadonly = () => (
+  <PropertyInput
+    readonly
+    suffix={"X"}
+    placeholder={"Pos"}
+    value={"Initial value"}
+  />
+);

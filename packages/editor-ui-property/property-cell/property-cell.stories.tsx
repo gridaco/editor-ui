@@ -6,4 +6,12 @@ export default {
   component: PropertyCell,
 };
 
-export const Primary = () => <PropertyCell>Text</PropertyCell>;
+export const Primary = () => (
+  <PropertyCell
+    background="black"
+    border="1px solid red"
+    outline="1px solid blue"
+  >
+    <span style={{ color: "white" }}>Content</span>
+  </PropertyCell>
+);
