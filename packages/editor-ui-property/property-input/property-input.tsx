@@ -23,7 +23,7 @@ export function PropertyInput({
   suffix?: React.ReactNode;
   placeholder?: string;
   type?: PropertyInputType;
-  value?: string;
+  value?: string | number;
   readonly?: boolean;
   disabled?: boolean;
   onChange?: (value: string) => void;
