@@ -30,7 +30,7 @@ const Items = styled.div`
 const Label = styled.label`
   max-width: 80px;
   flex: 1;
-  font-family: sans-serif;
+  font-family: Inter, sans-serif;
   font-size: 11px;
   color: #999;
 `;

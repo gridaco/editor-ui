@@ -32,7 +32,7 @@ const Container = styled.header`
   h5,
   h6 {
     cursor: default;
-    font-family: sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 12px;
     font-weight: 600;
     margin: 0;

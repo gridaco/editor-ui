@@ -146,7 +146,7 @@ const _fix = css`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: sans-serif;
+  font-family: Inter, sans-serif;
   font-size: 9px;
   height: 24px;
   width: 24px;
