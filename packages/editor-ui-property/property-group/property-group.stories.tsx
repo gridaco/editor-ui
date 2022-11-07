@@ -1,5 +1,5 @@
 import React from "react";
-import { PropertyGroupTitle } from "../property-group-title";
+import { PropertyGroupHeader } from "../property-group-header";
 import { PropertyInput } from "../property-input";
 import { PropertyLine } from "../property-line/property-line";
 import { PropertyLines } from "../property-lines";
@@ -12,7 +12,9 @@ export default {
 
 export const Primary = () => (
   <PropertyGroup>
-    <PropertyGroupTitle>Layout</PropertyGroupTitle>
+    <PropertyGroupHeader>
+      <h6>Layout</h6>
+    </PropertyGroupHeader>
     <PropertyLines>
       <PropertyLine label="Position">
         <PropertyInput suffix="X" value="0" type="number" />

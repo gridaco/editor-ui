@@ -11,6 +11,7 @@ const dark: EditorPropertyTheme = {
       focus: "rgba(255, 255, 255, 0.5)",
     },
   },
+  foreground: "white",
 };
 
 export default dark;

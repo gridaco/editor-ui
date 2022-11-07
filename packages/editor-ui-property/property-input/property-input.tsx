@@ -7,6 +7,17 @@ import { input_type_number_disable_browser_default_appearence } from "../css";
 import { css } from "@emotion/react";
 
 type PropertyInputType = "number" | "text"; // | "color" | "select" | "file";
+export interface PropertyInputProps {
+  prefix?: React.ReactNode;
+  suffix?: React.ReactNode;
+  placeholder?: string;
+  type?: PropertyInputType;
+  value?: string | number;
+  readonly?: boolean;
+  disabled?: boolean;
+  onChange?: (value: string) => void;
+  onClick?: () => void;
+}
 
 export function PropertyInput({
   prefix,
@@ -18,17 +29,7 @@ export function PropertyInput({
   disabled,
   onChange,
   onClick,
-}: {
-  prefix?: React.ReactNode;
-  suffix?: React.ReactNode;
-  placeholder?: string;
-  type?: PropertyInputType;
-  value?: string | number;
-  readonly?: boolean;
-  disabled?: boolean;
-  onChange?: (value: string) => void;
-  onClick?: () => void;
-}) {
+}: PropertyInputProps) {
   const [focused, setFocused] = React.useState(false);
   const [value, setValue] = React.useState(initial);
   const theme = useTheme();
@@ -92,6 +93,7 @@ export function PropertyInput({
       background={theme.input.bg}
       onClick={onclick}
       outline={focused ? `1px solid ${theme.input.border.focus}` : "none"}
+      height={24}
     >
       {prefix && <Prefix>{prefix}</Prefix>}
       <PlainInput
@@ -108,8 +110,8 @@ export function PropertyInput({
         placeholder={placeholder}
         style={{
           margin: 0,
-          marginLeft: suffix ? 8 : 0,
-          marginRight: prefix ? 8 : 0,
+          marginLeft: !prefix ? 8 : 0,
+          marginRight: !suffix ? 8 : 0,
         }}
       />
       {suffix && <Suffix>{suffix}</Suffix>}

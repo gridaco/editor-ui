@@ -11,6 +11,7 @@ const light: EditorPropertyTheme = {
       focus: "#B6B6B6",
     },
   },
+  foreground: "black",
 };
 
 export default light;

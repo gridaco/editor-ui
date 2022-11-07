@@ -1,6 +1,6 @@
 export * from "./property-cell";
 export * from "./property-group";
-export * from "./property-group-title";
+export * from "./property-group-header";
 export * from "./property-input";
 export * from "./property-line";
 export * from "./property-lines";

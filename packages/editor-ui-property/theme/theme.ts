@@ -14,4 +14,5 @@ export interface EditorPropertyTheme {
       focus: Color;
     };
   };
+  foreground: Color;
 }

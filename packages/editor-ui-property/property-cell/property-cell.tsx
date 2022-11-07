@@ -6,11 +6,13 @@ export function PropertyCell({
   border,
   outline,
   children,
+  height,
   onClick,
 }: React.PropsWithChildren<{
   background?: React.CSSProperties["background"];
   border?: React.CSSProperties["border"];
   outline?: React.CSSProperties["outline"];
+  height?: React.CSSProperties["height"];
   onClick?: React.MouseEventHandler;
 }>) {
   return (
@@ -20,6 +22,7 @@ export function PropertyCell({
         background,
         border,
         outline,
+        height,
       }}
     >
       {children}
