@@ -3,11 +3,13 @@ import React from "react";
 export function PropertyLine({
   label,
   children,
+  onClick,
 }: React.PropsWithChildren<{
   label?: string;
+  onClick?: (e) => void;
 }>) {
   return (
-    <Line>
+    <Line onClick={onClick}>
       {label && <Label>{label}</Label>}
       <Items>{children}</Items>
     </Line>

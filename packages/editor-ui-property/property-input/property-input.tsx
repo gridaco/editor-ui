@@ -35,11 +35,12 @@ export function PropertyInput({
   const theme = useTheme();
   const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const onclick = () => {
+  const onclick = (e) => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
     onClick?.();
+    e.stopPropagation();
   };
 
   const onvalue = (value: string) => {
