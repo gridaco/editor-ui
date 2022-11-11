@@ -122,8 +122,10 @@ function getPositionMargin(marginType: ListRowMarginType) {
 const RowContainer = styled.div<{
   marginType: ListRowMarginType;
   selected: boolean;
-  selectedColor?: string;
+  selectedColor?: React.CSSProperties["color"];
   selectedPosition: ListRowPosition;
+  hoverColor?: React.CSSProperties["color"];
+  hoverOutlineColor?: React.CSSProperties["color"];
   disabled: boolean;
   hovered: boolean;
   isSectionHeader: boolean;
@@ -135,6 +137,8 @@ const RowContainer = styled.div<{
     selected,
     selectedColor,
     selectedPosition,
+    hoverColor,
+    hoverOutlineColor,
     disabled,
     hovered,
     isSectionHeader,
@@ -183,7 +187,8 @@ const RowContainer = styled.div<{
         }),
       position: "relative",
       ...(hovered && {
-        boxShadow: `0 0 0 1px ${theme.colors.primary}`,
+        boxShadow: `0 0 0 1px ${hoverOutlineColor ?? theme.colors.primary}`,
+        ...(selected ? {} : hoverColor ? { backgroundColor: hoverColor } : {}),
       }),
       ...(showsActiveState && {
         "&:active": {
@@ -234,6 +239,16 @@ export interface ListViewRowProps<MenuItemType extends string = string> {
    * if not provided, it will use theme's selected color instead.
    */
   selectedColor?: string;
+  /**
+   * optional custom override selected color.
+   * if not provided, it will use theme's selected color instead.
+   */
+  hoverColor?: string;
+  /**
+   * optional custom override selected color.
+   * if not provided, it will use theme's selected color instead.
+   */
+  hoverOutlineColor?: string;
   depth?: number;
   disabled?: boolean;
   draggable?: boolean;
@@ -257,6 +272,8 @@ const ListViewRow = forwardRef(function ListViewRow<
     id,
     selected = false,
     selectedColor,
+    hoverColor,
+    hoverOutlineColor,
     depth = 0,
     disabled = false,
     hovered = false,
@@ -328,6 +345,8 @@ const ListViewRow = forwardRef(function ListViewRow<
         selected={selected}
         selectedColor={selectedColor}
         selectedPosition={selectedPosition}
+        hoverColor={hoverColor}
+        hoverOutlineColor={hoverOutlineColor}
         showsActiveState={pressEventName === "onClick"}
         aria-selected={selected}
         onClick={onClick}
