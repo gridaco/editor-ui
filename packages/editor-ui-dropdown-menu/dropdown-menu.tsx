@@ -53,7 +53,7 @@ const itemStyles = {
   height: 25,
   padding: "0 5px",
   position: "relative",
-  paddingLeft: 25,
+  paddingLeft: 8,
   userSelect: "none",
 
   "&[data-disabled]": {
