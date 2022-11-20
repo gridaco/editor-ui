@@ -1,14 +1,20 @@
+import React, { forwardRef } from "react";
 import styled from "@emotion/styled";
-import React from "react";
 
-export function PropertyGroupHeader({
-  padding = 16,
-  children,
-}: React.PropsWithChildren<{
-  padding?: React.CSSProperties["padding"];
-}>) {
+export const PropertyGroupHeader = forwardRef(function (
+  {
+    padding = 16,
+    children,
+    ...props
+  }: React.PropsWithChildren<{
+    padding?: React.CSSProperties["padding"];
+  }>,
+  ref: React.Ref<HTMLDivElement>
+) {
   return (
     <Container
+      ref={ref}
+      {...props}
       style={{
         padding,
       }}
@@ -17,7 +23,7 @@ export function PropertyGroupHeader({
       {/* <Title>{}</Title> */}
     </Container>
   );
-}
+});
 
 const Container = styled.header`
   display: flex;
