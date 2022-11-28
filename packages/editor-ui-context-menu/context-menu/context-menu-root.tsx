@@ -1,7 +1,6 @@
 import React, { memo, ReactNode } from "react";
 import styled from "@emotion/styled";
 import * as ContextMenu from "@radix-ui/react-context-menu";
-import { Slot } from "@radix-ui/react-slot";
 import { SEPARATOR_ITEM, MenuItem, styles } from "@editor-ui/menu";
 
 import { ContextMenuItem } from "./context-menu-item";
@@ -29,9 +28,8 @@ export const ContextMenuRoot = memo(function ContextMenuRoot<T extends string>({
   );
 
   return (
-    // @ts-ignore
     <ContextMenu.Root>
-      <ContextMenu.Trigger as={Slot}>{children}</ContextMenu.Trigger>
+      <ContextMenu.Trigger asChild>{children}</ContextMenu.Trigger>
       {/* @ts-ignore */}
       <RootElement>
         {items.map((item, index) =>
