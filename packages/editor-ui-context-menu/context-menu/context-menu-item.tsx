@@ -44,11 +44,11 @@ export const ContextMenuItem = memo(function ContextMenuItem({
 }: ContextMenuItemProps) {
   if (checked) {
     return (
+      // @ts-ignore
       <CheckboxItemElement
         theme={undefined}
         checked={checked}
         onSelect={onSelect}
-        asChild
       >
         <StyledItemIndicator>
           <CheckIcon />
