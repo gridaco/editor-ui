@@ -29,6 +29,7 @@ export const ContextMenuRoot = memo(function ContextMenuRoot<T extends string>({
 
   return (
     <ContextMenu.Root>
+      {/* @ts-ignore */}
       <ContextMenu.Trigger asChild>{children}</ContextMenu.Trigger>
       {/* @ts-ignore */}
       <RootElement>
