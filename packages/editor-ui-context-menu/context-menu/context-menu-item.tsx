@@ -58,6 +58,7 @@ export const ContextMenuItem = memo(function ContextMenuItem({
     );
   } else {
     return (
+      // @ts-ignore
       <ItemElement theme={undefined} onSelect={onSelect}>
         {indented && (
           <Spacer.Horizontal size={CHECKBOX_WIDTH - CHECKBOX_RIGHT_INSET} />
