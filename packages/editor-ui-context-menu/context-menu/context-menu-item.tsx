@@ -48,6 +48,7 @@ export const ContextMenuItem = memo(function ContextMenuItem({
         theme={undefined}
         checked={checked}
         onSelect={onSelect}
+        asChild
       >
         <StyledItemIndicator>
           <CheckIcon />
