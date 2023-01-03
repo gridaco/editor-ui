@@ -4,17 +4,20 @@ import { styled } from "linaria/react";
 export function TextField({
   value,
   placeholder,
+  readonly,
   onChange,
   onEnter,
 }: {
   onChange?: (value: string) => void;
   onEnter?: (value: string) => void;
+  readonly?: boolean;
   value?: string;
   placeholder?: string;
 }) {
   return (
     <Wrap>
       <BaseTextField
+        readOnly={readonly}
         onChange={(e) => {
           onChange?.(e.target.value);
         }}

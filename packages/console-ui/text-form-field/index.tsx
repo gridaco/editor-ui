@@ -10,10 +10,12 @@ import {
 export function TextFormField({
   label,
   helpText,
+  readonly,
   ...rest
 }: {
   onEnter?: (value: string) => void;
   onChange?: (value: string) => void;
+  readonly?: boolean;
   label: string;
   value?: string;
   helpText?: string;
@@ -23,7 +25,7 @@ export function TextFormField({
     <Wrap>
       <FormFieldBase>
         {label && <FormFieldLabel>{label}</FormFieldLabel>}
-        <TextField {...rest} />
+        <TextField {...rest} readonly={readonly} />
         {helpText && <FormFieldAssisiveText>{helpText}</FormFieldAssisiveText>}
       </FormFieldBase>
     </Wrap>

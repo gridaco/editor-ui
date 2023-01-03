@@ -30,16 +30,18 @@ export function Button({
       onClick={onClick}
       disabled={disabled}
       width={width || "auto"}
-      height={height || "auto"}
       textColor={textcolormap[color]}
       backgroundColor={bgcolormap[color]}
+      style={{
+        height: height || "auto",
+      }}
     >
       {children}
     </ButtonBase>
   );
 }
 
-const ButtonBase = styled.button<{ width; height; textColor; backgroundColor }>`
+const ButtonBase = styled.button<{ width; textColor; backgroundColor }>`
   user-select: none;
   cursor: pointer;
   border: none;
@@ -47,7 +49,6 @@ const ButtonBase = styled.button<{ width; height; textColor; backgroundColor }>`
   border-radius: 2px;
   align-self: stretch;
   width: ${(props) => props.width};
-  min-height: ${(props) => props.height};
   background-color: ${(props) => props.backgroundColor};
   box-sizing: border-box;
   padding: 6px 16px;
