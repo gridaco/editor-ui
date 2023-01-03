@@ -1,12 +1,18 @@
 import React from "react";
 import { styled } from "linaria/react";
 import { TextField } from "../text-field";
+import {
+  FormFieldLabel,
+  FormFieldBase,
+  FormFieldAssisiveText,
+} from "../form-field";
 
 export function TextFormField({
   label,
   helpText,
   ...rest
 }: {
+  onEnter?: (value: string) => void;
   onChange?: (value: string) => void;
   label: string;
   value?: string;
@@ -15,11 +21,11 @@ export function TextFormField({
 }) {
   return (
     <Wrap>
-      <BaseTextFormField>
-        {label && <Label>{label}</Label>}
+      <FormFieldBase>
+        {label && <FormFieldLabel>{label}</FormFieldLabel>}
         <TextField {...rest} />
-        {helpText && <AssisiveText>{helpText}</AssisiveText>}
-      </BaseTextFormField>
+        {helpText && <FormFieldAssisiveText>{helpText}</FormFieldAssisiveText>}
+      </FormFieldBase>
     </Wrap>
   );
 }
@@ -32,38 +38,5 @@ const Wrap = styled.div`
   align-items: flex-start;
   align-self: stretch;
   box-sizing: border-box;
-  flex-shrink: 0;
-`;
-
-const BaseTextFormField = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  align-self: stretch;
-  box-sizing: border-box;
-  flex-shrink: 0;
-`;
-
-const Label = styled.span`
-  color: black;
-  text-overflow: ellipsis;
-  font-size: 12px;
-  font-family: Inter, sans-serif;
-  font-weight: 400;
-  text-align: left;
-  align-self: stretch;
-  flex-shrink: 0;
-`;
-
-const AssisiveText = styled.span`
-  color: rgba(0, 0, 0, 0.6);
-  text-overflow: ellipsis;
-  font-size: 12px;
-  font-family: Inter, sans-serif;
-  font-weight: 400;
-  text-align: left;
-  align-self: stretch;
   flex-shrink: 0;
 `;
