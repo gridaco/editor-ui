@@ -1,25 +1,28 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { CSSProperties } from "@emotion/serialize";
 
 const textcolormap = {
   white: "black",
   black: "white",
+  red: "white",
 } as const;
 
 const bgcolormap = {
   white: "white",
   black: "black",
+  red: "red",
 };
 
 export function Button({
   onClick,
   color = "black",
-  width,
-  height,
+  width = "auto",
+  height = "auto",
   children,
   disabled,
 }: {
-  onClick?: (e?) => void;
+  onClick?: (e?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   color?: "white" | "black" | "red";
   disabled?: boolean;
   width?: React.CSSProperties["width"];
@@ -29,11 +32,11 @@ export function Button({
     <ButtonBase
       onClick={onClick}
       disabled={disabled}
-      width={width || "auto"}
       textColor={textcolormap[color]}
       backgroundColor={bgcolormap[color]}
       style={{
-        height: height || "auto",
+        height: height,
+        width,
       }}
     >
       {children}
@@ -41,14 +44,16 @@ export function Button({
   );
 }
 
-const ButtonBase = styled.button<{ width; textColor; backgroundColor }>`
+const ButtonBase = styled.button<{
+  textColor: CSSProperties["color"];
+  backgroundColor: CSSProperties["color"];
+}>`
   user-select: none;
   cursor: pointer;
   border: none;
   outline: none;
   border-radius: 2px;
   align-self: stretch;
-  width: ${(props) => props.width};
   background-color: ${(props) => props.backgroundColor};
   box-sizing: border-box;
   padding: 6px 16px;
