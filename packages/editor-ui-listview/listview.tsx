@@ -523,6 +523,7 @@ const VirtualizedList = memo(
 const RootContainer = styled.div<{ scrollable?: boolean }>(
   ({ theme, scrollable }) => ({
     flex: scrollable ? "1 0 0" : "0 0 auto",
+    height: "100%",
     display: "flex",
     flexDirection: "column",
     flexWrap: "nowrap",
