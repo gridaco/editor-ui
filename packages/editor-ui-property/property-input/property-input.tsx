@@ -8,6 +8,7 @@ import { css } from "@emotion/react";
 
 type PropertyInputType = "number" | "text"; // | "color" | "select" | "file";
 export interface PropertyInputProps {
+  autofocus?: boolean;
   prefix?: React.ReactNode;
   suffix?: React.ReactNode;
   placeholder?: string;
@@ -20,6 +21,7 @@ export interface PropertyInputProps {
 }
 
 export function PropertyInput({
+  autofocus = false,
   prefix,
   suffix,
   placeholder,
@@ -100,6 +102,7 @@ export function PropertyInput({
       {prefix && <Prefix>{prefix}</Prefix>}
       <PlainInput
         ref={inputRef}
+        autoFocus={autofocus}
         readOnly={readonly}
         disabled={disabled}
         onFocusCapture={onfocuscapture}
