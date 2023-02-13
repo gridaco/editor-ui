@@ -16,6 +16,11 @@ export interface PropertyInputProps {
   value?: string | number;
   readonly?: boolean;
   disabled?: boolean;
+
+  /**
+   * The pattern attribute specifies a regular expression the form control's value should match. If a non-null value doesn't conform to the constraints set by the pattern value, the ValidityState object's read-only patternMismatch property will be true.
+   */
+  pattern?: string;
   onChange?: (value: string) => void;
   onClick?: () => void;
 }
@@ -29,6 +34,7 @@ export function PropertyInput({
   value: initial = "",
   readonly,
   disabled,
+  pattern,
   onChange,
   onClick,
 }: PropertyInputProps) {
@@ -113,6 +119,7 @@ export function PropertyInput({
         onKeyDown={onkeydown}
         onChange={(e) => onvalue(e.target.value)}
         placeholder={placeholder}
+        pattern={pattern}
         style={{
           margin: 0,
           marginLeft: !prefix ? 8 : 0,
