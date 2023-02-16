@@ -73,8 +73,6 @@ export function PropertyInput({
   };
 
   const onkeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    e.preventDefault();
-
     if (e.key === "Enter" || e.key === "Escape") {
       inputRef.current?.blur();
     }
@@ -85,6 +83,7 @@ export function PropertyInput({
 
     // up or down key ally
     if (type === "number" && (e.key === "ArrowUp" || e.key === "ArrowDown")) {
+      e.preventDefault(); // this is required to prevent number's default behavior
       // if shift key is pressed, increase or decrease by 10
       // if ctrl / cmd key is pressed, increase or decrease by 0.1
       // if both shift and ctrl / cmd key is pressed, increase or decrease by 100
@@ -155,7 +154,7 @@ const PlainInput = styled.input`
     color: #999;
   }
 
-  ${input_type_number_disable_browser_default_appearence}
+  /* input_type_number_disable_browser_default_appearence */
 `;
 
 const _fix = css`
