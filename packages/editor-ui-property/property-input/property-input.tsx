@@ -73,6 +73,8 @@ export function PropertyInput({
   };
 
   const onkeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
     if (e.key === "Enter" || e.key === "Escape") {
       inputRef.current?.blur();
     }
