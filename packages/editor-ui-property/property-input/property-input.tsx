@@ -6,8 +6,11 @@ import { useTheme } from "../theme";
 import { input_type_number_disable_browser_default_appearence } from "../css";
 import { css } from "@emotion/react";
 
-type PropertyInputType = "number" | "text"; // | "color" | "select" | "file";
-export interface PropertyInputProps {
+type PropertyInputType = "number" | "text" | "select";
+
+export type PropertyInputProps = PlainInputProps;
+
+interface PlainInputProps {
   autofocus?: boolean;
   prefix?: React.ReactNode;
   suffix?: React.ReactNode;
