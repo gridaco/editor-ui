@@ -6,7 +6,8 @@
         "build-storybook": "build-storybook"
     },
     "dependencies": {
-        "@editor-ui/foundation": "0.0.0"
+        "@editor-ui/foundation": "0.0.0",
+        "@radix-ui/react-checkbox": "^1.0.1"
     },
     "peerDependencies": {
         "@emotion/react": "^11.10.5",
