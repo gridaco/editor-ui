@@ -32,10 +32,11 @@ export function PropertySelectInput({
   options: _options = [],
   readonly,
   disabled,
-  value,
+  value: initial,
   ariaLabel,
   onChange,
 }: SelectInputProps) {
+  const [value, setValue] = React.useState(initial);
   const options = React.useMemo(
     () =>
       _options.map((o) => {
@@ -51,7 +52,14 @@ export function PropertySelectInput({
   );
 
   return (
-    <Select.Root onValueChange={onChange} value={value} disabled={disabled}>
+    <Select.Root
+      onValueChange={(v) => {
+        setValue(v);
+        onChange(v);
+      }}
+      value={value}
+      disabled={disabled}
+    >
       <Select.Trigger
         className="SelectTrigger"
         disabled={disabled}

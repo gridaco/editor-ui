@@ -4,11 +4,14 @@ import * as Checkbox from "@radix-ui/react-checkbox";
 import { CheckIcon } from "@radix-ui/react-icons";
 
 interface CheckboxProps {
-  checked?: boolean;
+  value?: boolean;
   onChange?: (checked: boolean) => void;
 }
 
-export function PropertyCheckboxInput({ checked, onChange }: CheckboxProps) {
+export function PropertyCheckboxInput({
+  value: checked,
+  onChange,
+}: CheckboxProps) {
   const [value, setValue] = React.useState(checked);
 
   const onvalue = (value: boolean) => {
