@@ -6,7 +6,7 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
 } from "@radix-ui/react-icons";
-import "./styles.css";
+import { css } from "@emotion/react";
 
 type OptionsInput = Array<{ label: string; value: string }> | Array<string>;
 
@@ -60,33 +60,32 @@ export function PropertySelectInput({
       value={value}
       disabled={disabled}
     >
-      <Select.Trigger
-        className="SelectTrigger"
+      <StyledTrigger
         disabled={disabled}
         aria-label={ariaLabel}
         autoFocus={autofocus}
       >
         <Select.Value placeholder={placeholder} />
-        <Select.Icon className="SelectIcon">
+        <Select.Icon className="icon">
           <ChevronDownIcon />
         </Select.Icon>
-      </Select.Trigger>
+      </StyledTrigger>
       <Select.Portal>
-        <Select.Content className="SelectContent">
-          <Select.ScrollUpButton className="SelectScrollButton">
+        <SelectContent>
+          <SelectScrollUpButton>
             <ChevronUpIcon />
-          </Select.ScrollUpButton>
-          <Select.Viewport className="SelectViewport">
+          </SelectScrollUpButton>
+          <Select.Viewport style={{ padding: 5 }}>
             {options.map(({ value, label }) => (
               <SelectItem key={value} value={value}>
                 {label}
               </SelectItem>
             ))}
           </Select.Viewport>
-          <Select.ScrollDownButton className="SelectScrollButton">
+          <SelectScrollDownButton>
             <ChevronDownIcon />
-          </Select.ScrollDownButton>
-        </Select.Content>
+          </SelectScrollDownButton>
+        </SelectContent>
       </Select.Portal>
     </Select.Root>
   );
@@ -100,7 +99,7 @@ const SelectItem = React.forwardRef(
     return (
       <StyledSelectItem {...props} ref={forwardedRef}>
         <Select.ItemText>{children}</Select.ItemText>
-        <Select.ItemIndicator className="SelectItemIndicator">
+        <Select.ItemIndicator className="indicator">
           <CheckIcon />
         </Select.ItemIndicator>
       </StyledSelectItem>
@@ -109,9 +108,10 @@ const SelectItem = React.forwardRef(
 );
 
 const StyledSelectItem = styled(Select.Item)`
-  font-size: 13px;
+  font-family: sans-serif;
+  font-size: 11px;
   line-height: 1;
-  color: var(--violet11);
+  color: #1a1a1a;
   border-radius: 3px;
   display: flex;
   align-items: center;
@@ -121,12 +121,12 @@ const StyledSelectItem = styled(Select.Item)`
   user-select: none;
 
   &[data-disabled] {
-    color: var(--mauve8);
+    color: rgba(0, 0, 0, 0.2);
     pointer-events: none;
   }
   &[data-highlighted] {
     outline: none;
-    background-color: var(--violet9);
+    background-color: rgba(0, 0, 0, 0.1);
     color: var(--violet1);
   }
 
@@ -140,4 +140,63 @@ const StyledSelectItem = styled(Select.Item)`
   }
 
   /*  */
+`;
+
+const StyledTrigger = styled(Select.Trigger)`
+  all: unset;
+  font-family: sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  padding: 0 8px;
+  font-size: 11px;
+  line-height: 1;
+  height: 24px;
+  gap: 4px;
+  background-color: white;
+  color: #1a1a1a;
+  box-shadow: 0 2px 2px rgba(22, 23, 24, 0.1);
+
+  &:hover {
+    background-color: #f2f2f2;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 1px black;
+  }
+
+  &[data-placeholder] {
+    color: #3c3c3c;
+  }
+
+  .icon {
+    color: #1a1a1a;
+  }
+`;
+
+const SelectScrollButton = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  background-color: white;
+  color: #1a1a1a;
+  cursor: default;
+`;
+
+const SelectScrollUpButton = styled(Select.ScrollUpButton)`
+  ${SelectScrollButton}
+`;
+
+const SelectScrollDownButton = styled(Select.ScrollDownButton)`
+  ${SelectScrollButton}
+`;
+
+const SelectContent = styled(Select.Content)`
+  overflow: hidden;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35),
+    0px 10px 20px -15px rgba(22, 23, 24, 0.2);
 `;
