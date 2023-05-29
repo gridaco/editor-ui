@@ -14,7 +14,7 @@ const RootElement = styled(ContextMenu.Content)(styles.contentStyle);
 
 interface Props<T extends string> {
   children: ReactNode;
-  items: MenuItem<T>[];
+  items: Array<MenuItem<T>> | ReadonlyArray<MenuItem<T>>;
   onSelect?: (value: T) => void;
 }
 
