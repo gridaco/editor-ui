@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const FormFieldLabel = styled.span`
-  color: black;
+  opacity: 0.9;
   text-overflow: ellipsis;
   font-size: 12px;
   font-family: Inter, sans-serif;
@@ -23,7 +23,7 @@ export const FormFieldBase = styled.div`
 `;
 
 export const FormFieldAssisiveText = styled.span`
-  color: rgba(0, 0, 0, 0.6);
+  opacity: 0.6;
   text-overflow: ellipsis;
   font-size: 12px;
   font-family: Inter, sans-serif;

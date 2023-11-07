@@ -50,18 +50,15 @@ const BaseTextField = styled.input`
   flex-direction: row;
   align-items: flex-start;
   border: solid 1px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 4px;
   width: 100%;
   box-sizing: border-box;
   padding: 10px;
+  font-weight: normal;
+  font-size: 14px;
 
-  color: rgba(0, 0, 0, 0.8);
   ::placeholder {
-    color: rgba(0, 0, 0, 0.3);
-    text-overflow: ellipsis;
-    font-size: 14px;
-    font-family: Inter, sans-serif;
-    font-weight: 400;
-    text-align: left;
+    opacity: 0.3;
   }
 `;
