@@ -14,7 +14,7 @@ const bgcolormap = {
   red: "red",
 };
 
-export function Button({
+export const Button = React.forwardRef(function Button({
   onClick,
   color = "black",
   width = "auto",
@@ -27,9 +27,10 @@ export function Button({
   disabled?: boolean;
   width?: React.CSSProperties["width"];
   height?: React.CSSProperties["height"];
-} & React.PropsWithChildren) {
+} & React.PropsWithChildren, forwaredRef: React.Ref<HTMLButtonElement>) {
   return (
     <ButtonBase
+      ref={forwaredRef}
       onClick={onClick}
       disabled={disabled}
       textColor={textcolormap[color]}
@@ -42,7 +43,7 @@ export function Button({
       {children}
     </ButtonBase>
   );
-}
+})
 
 const ButtonBase = styled.button<{
   textColor: CSSProperties["color"];
