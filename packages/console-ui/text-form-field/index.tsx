@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from "linaria/react";
+import styled from "@emotion/styled";
 import { TextField } from "../text-field";
 import {
   FormFieldLabel,
