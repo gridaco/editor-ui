@@ -20,6 +20,7 @@ export function TextFormField({
   value?: string;
   helpText?: string;
   placeholder?: string;
+  autoFocus?: boolean;
 }) {
   return (
     <Wrap>

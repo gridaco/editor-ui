@@ -7,16 +7,19 @@ export function TextField({
   readonly,
   onChange,
   onEnter,
+  autoFocus
 }: {
   onChange?: (value: string) => void;
   onEnter?: (value: string) => void;
   readonly?: boolean;
   value?: string;
   placeholder?: string;
+  autoFocus?: boolean;
 }) {
   return (
     <Wrap>
       <BaseTextField
+        autoFocus={autoFocus}
         readOnly={readonly}
         onChange={(e) => {
           onChange?.(e.target.value);
