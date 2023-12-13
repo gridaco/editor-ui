@@ -16,7 +16,7 @@ export function TextFormField({
   onEnter?: (value: string) => void;
   onChange?: (value: string) => void;
   readonly?: boolean;
-  label: string;
+  label?: string;
   value?: string;
   helpText?: string;
   placeholder?: string;
