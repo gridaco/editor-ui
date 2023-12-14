@@ -27,7 +27,7 @@ export const styles = {
     theme: Theme;
     disabled?: boolean;
   }): CSSObject => ({
-    ...theme.textStyles.small,
+    ...(theme.textStyles.small as any),
     fontWeight: 500,
     fontSize: "0.8rem",
     flex: "0 0 auto",
