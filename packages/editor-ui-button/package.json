@@ -1,4 +1,20 @@
 {
     "name": "@editor-ui/button",
-    "version": "0.0.0"
+    "version": "0.0.0",
+    "devDependencies": {
+        "@emotion/react": "^11.11.3",
+        "@emotion/styled": "^11.11.0",
+        "@types/react": "18.2.58",
+        "react": "^18.2.0"
+    },
+    "peerDependencies": {
+        "@emotion/react": "^11.11.3",
+        "@emotion/styled": "^11.11.0",
+        "@types/react": "18.2.58",
+        "react": "^18.2.0"
+    },
+    "dependencies": {
+        "@editor-ui/theme": "workspace:^",
+        "@editor-ui/tooltip": "workspace:^"
+    }
 }

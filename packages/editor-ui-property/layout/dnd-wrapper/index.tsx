@@ -31,8 +31,8 @@ function DnDWrapper(props: DnDWrapperProps) {
       const { active, over } = event;
 
       if (over && active.id !== over.id) {
-        const oldIndex = keys.indexOf(active.id);
-        const newIndex = keys.indexOf(over.id);
+        const oldIndex = keys.indexOf(active.id as string);
+        const newIndex = keys.indexOf(over.id as string);
 
         onMoveItem?.(oldIndex, newIndex);
       }

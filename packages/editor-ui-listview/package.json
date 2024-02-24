@@ -1,13 +1,30 @@
 {
-    "name": "@editor-ui/listview",
-    "version": "0.0.0",
-    "dependencies": {
-        "@editor-ui/foundation": "0.0.0",
-        "react-virtualized": "^9.22.3",
-        "react-window": "^1.8.6"
-    },
-    "devDependencies": {
-        "@types/react-virtualized": "^9.21.13",
-        "@types/react-window": "^1.8.5"
-    }
+  "name": "@editor-ui/listview",
+  "version": "0.0.0",
+  "dependencies": {
+    "@editor-ui/context-menu": "workspace:^",
+    "@editor-ui/foundation": "0.0.0",
+    "@editor-ui/hooks": "workspace:^",
+    "@editor-ui/scroll-area": "workspace:^",
+    "@editor-ui/sortable": "workspace:^",
+    "@editor-ui/spacer": "workspace:^",
+    "@editor-ui/theme": "workspace:^",
+    "@editor-ui/utils": "workspace:^",
+    "@radix-ui/react-compose-refs": "^1.0.1",
+    "@reflect-ui/uiutils": "0.1.2-2",
+    "react-virtualized": "^9.22.3",
+    "react-window": "^1.8.6"
+  },
+  "peerDependencies": {
+    "@emotion/styled": "^11.11.0",
+    "@types/react": "18.2.58",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@emotion/styled": "^11.11.0",
+    "@types/react": "18.2.58",
+    "@types/react-virtualized": "^9.21.13",
+    "@types/react-window": "^1.8.5",
+    "react": "^18.2.0"
+  }
 }
