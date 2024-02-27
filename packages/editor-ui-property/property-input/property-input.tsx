@@ -17,6 +17,8 @@ interface PlainInputProps {
   placeholder?: string;
   type?: PropertyInputType;
   value?: string | number;
+  min?: number;
+  max?: number;
   readonly?: boolean;
   disabled?: boolean;
   stopPropagation?: boolean;
@@ -36,6 +38,8 @@ export function PropertyInput({
   placeholder,
   type = "text",
   value: initial = "",
+  min,
+  max,
   readonly,
   disabled,
   pattern,
@@ -130,6 +134,8 @@ export function PropertyInput({
         onChange={(e) => onvalue(e.target.value)}
         placeholder={placeholder}
         pattern={pattern}
+        min={min}
+        max={max}
         style={{
           margin: 0,
           marginLeft: !prefix ? 8 : 0,
