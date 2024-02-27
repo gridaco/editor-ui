@@ -19,6 +19,7 @@ interface PlainInputProps {
   value?: string | number;
   readonly?: boolean;
   disabled?: boolean;
+  stopPropagation?: boolean;
 
   /**
    * The pattern attribute specifies a regular expression the form control's value should match. If a non-null value doesn't conform to the constraints set by the pattern value, the ValidityState object's read-only patternMismatch property will be true.
@@ -38,6 +39,7 @@ export function PropertyInput({
   readonly,
   disabled,
   pattern,
+  stopPropagation,
   onChange,
   onClick,
 }: PropertyInputProps) {
@@ -98,6 +100,10 @@ export function PropertyInput({
       const value = Number(inputRef.current?.value);
       const newValue = e.key === "ArrowUp" ? value + step : value - step;
       onvalue("" + newValue);
+    }
+
+    if (stopPropagation) {
+      e.stopPropagation();
     }
   };
 
