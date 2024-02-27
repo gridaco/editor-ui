@@ -5,18 +5,31 @@ export const PropertyGroupHeader = forwardRef(function (
   {
     padding = 16,
     children,
+    dividers,
+    as,
+    asButton,
+    onClick,
     ...props
   }: React.PropsWithChildren<{
     padding?: React.CSSProperties["padding"];
+    dividers?: boolean;
+    as?: React.ElementType;
+    asButton?: boolean;
+    onClick?: () => void;
   }>,
   ref: React.Ref<HTMLDivElement>
 ) {
   return (
     <Container
+      as={asButton ? "button" : as || "header"}
       ref={ref}
+      onClick={onClick}
       {...props}
       style={{
         padding,
+        borderBottom: dividers ? "1px solid #ffffff15" : "none",
+        borderTop: dividers ? "1px solid #ffffff15" : "none",
+        cursor: asButton ? "pointer" : "default",
       }}
     >
       {children}
