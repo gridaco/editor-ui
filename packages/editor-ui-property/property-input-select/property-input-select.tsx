@@ -19,7 +19,7 @@ interface SelectInputProps {
   readonly?: boolean;
   disabled?: boolean;
 
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
   onClick?: () => void;
 
   // aria
@@ -55,7 +55,7 @@ export function PropertySelectInput({
     <Select.Root
       onValueChange={(v) => {
         setValue(v);
-        onChange(v);
+        onChange?.(v);
       }}
       value={value}
       disabled={disabled}
@@ -70,7 +70,11 @@ export function PropertySelectInput({
           <ChevronDownIcon />
         </Select.Icon>
       </StyledTrigger>
-      <Select.Portal>
+      <Select.Portal
+        style={{
+          zIndex: 1000,
+        }}
+      >
         <SelectContent>
           <SelectScrollUpButton>
             <ChevronUpIcon />

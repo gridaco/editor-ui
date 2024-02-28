@@ -6,6 +6,7 @@ export * from "./property-input-checkbox";
 export * from "./property-input-slider";
 export * from "./property-input-color";
 export * from "./property-input-select";
+export * from "./property-input-toggle-group";
 export * from "./property-line";
 export * from "./property-lines";
 export * from "./layout";
