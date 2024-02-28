@@ -147,6 +147,27 @@ export function PropertyInput({
   );
 }
 
+export function PropertyNumericInput({
+  onChange,
+  ...props
+}: Omit<React.ComponentProps<typeof PropertyInput>, "type" | "onChange"> & {
+  onChange?: (value: number) => void;
+}) {
+  return (
+    <PropertyInput
+      type="number"
+      {...props}
+      onChange={(txt) => {
+        const val = Number(txt);
+        if (isNaN(val)) {
+          return;
+        }
+        onChange(val);
+      }}
+    />
+  );
+}
+
 const PlainInput = styled.input`
   width: 100%;
   height: 100%;
