@@ -162,7 +162,7 @@ export function PropertyNumericInput({
         if (isNaN(val)) {
           return;
         }
-        onChange(val);
+        onChange?.(val);
       }}
     />
   );
