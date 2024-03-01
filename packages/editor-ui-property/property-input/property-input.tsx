@@ -1,5 +1,5 @@
 import styled from "../theme/styled";
-import React from "react";
+import React, { useEffect } from "react";
 
 import { PropertyCell } from "../property-cell";
 import { useTheme } from "../theme";
@@ -51,6 +51,10 @@ export function PropertyInput({
   const [value, setValue] = React.useState(initial);
   const theme = useTheme();
   const inputRef = React.useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setValue(initial);
+  }, [initial]);
 
   const onclick = (e) => {
     if (inputRef.current) {
@@ -187,7 +191,7 @@ const PlainInput = styled.input`
     color: #999;
   }
 
-  /* input_type_number_disable_browser_default_appearence */
+  ${input_type_number_disable_browser_default_appearence}
 `;
 
 const _fix = css`

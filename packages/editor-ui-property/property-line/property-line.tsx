@@ -4,14 +4,22 @@ export function PropertyLine({
   label,
   children,
   onClick,
+  gap = 8,
 }: React.PropsWithChildren<{
   label?: string;
+  gap?: number;
   onClick?: (e) => void;
 }>) {
   return (
     <Line onClick={onClick}>
       {label && <Label>{label}</Label>}
-      <Items>{children}</Items>
+      <Items
+        style={{
+          gap,
+        }}
+      >
+        {children}
+      </Items>
     </Line>
   );
 }
@@ -25,7 +33,6 @@ const Line = styled.div`
 const Items = styled.div`
   display: flex;
   flex: 7;
-  gap: 8px;
 `;
 
 const Label = styled.label`
