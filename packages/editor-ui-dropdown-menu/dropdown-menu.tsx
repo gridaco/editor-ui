@@ -49,6 +49,7 @@ const itemStyles = {
   // color: violet.violet11,
   borderRadius: 3,
   display: "flex",
+  gap: 4,
   alignItems: "center",
   height: 25,
   padding: "0 5px",
@@ -75,7 +76,7 @@ const StyledCheckboxItem = styled(DropdownMenuPrimitive.CheckboxItem, {
 const StyledRadioItem = styled(DropdownMenuPrimitive.RadioItem, {
   ...itemStyles,
 });
-const StyledTriggerItem = styled(DropdownMenuPrimitive.TriggerItem, {
+const StyledTriggerItem = styled(DropdownMenuPrimitive.SubTrigger, {
   '&[data-state="open"]': {
     // backgroundColor: violet.violet4,
     // color: violet.violet11,
@@ -111,6 +112,7 @@ const StyledArrow = styled(DropdownMenuPrimitive.Arrow, {
 
 // Exports
 export const DropdownMenu = DropdownMenuPrimitive.Root;
+export const DropdownMenuPortal = DropdownMenuPrimitive.Portal;
 export const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
 export const DropdownMenuContent = StyledContent;
 export const DropdownMenuItem = StyledItem;
