@@ -1,6 +1,7 @@
 import React from "react";
 import { styled, keyframes } from "@stitches/react";
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
+import type { DialogContentProps } from "@radix-ui/react-dialog";
 
 const overlayShow = keyframes({
   "0%": { opacity: 0 },
@@ -42,7 +43,10 @@ const StyledContent = styled(AlertDialogPrimitive.Content, {
   "&:focus": { outline: "none" },
 });
 
-function Content({ children, ...props }) {
+function Content({
+  children,
+  ...props
+}: React.PropsWithChildren<DialogContentProps>) {
   return (
     <AlertDialogPrimitive.Portal>
       <StyledOverlay />

@@ -2,10 +2,14 @@
   "name": "@editor-ui/alert-dialog",
   "version": "0.0.0",
   "dependencies": {
-    "@radix-ui/react-alert-dialog": "^0.1.7",
+    "@radix-ui/react-alert-dialog": "^1.0.5",
     "@stitches/react": "^1.2.8"
   },
   "devDependencies": {
+    "@radix-ui/react-dialog": "^1.0.5",
     "@types/react": "18.2.58"
+  },
+  "peerDependencies": {
+    "@radix-ui/react-dialog": "^1.0.5"
   }
 }
