@@ -93,7 +93,9 @@ const ColorPickerInput = styled.input`
   border: none;
   outline: none;
   background: transparent;
-  color: ${(props) => props.theme.input.value};
+  color: ${(props) =>
+    /* @ts-ignore */
+    props.theme.input.value};
   font-size: 11px;
   font-weight: 500;
   padding: 0;
@@ -105,13 +107,17 @@ const ColorTextInput = styled.input`
   border: none;
   outline: none;
   background: transparent;
-  color: ${(props) => props.theme.input.value};
+  color: ${(props) =>
+    /* @ts-ignore */
+    props.theme.input.value};
   font-size: 11px;
   font-weight: 500;
   padding: 0;
 
   &:disabled {
-    color: ${(props) => props.theme.input.value_disabled};
+    color: ${(props) =>
+      /* @ts-ignore */
+      props.theme.input.value_disabled};
   }
 
   ::placeholder {

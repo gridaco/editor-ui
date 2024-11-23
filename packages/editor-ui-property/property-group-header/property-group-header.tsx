@@ -55,6 +55,8 @@ const Container = styled.header`
     font-size: 12px;
     font-weight: 600;
     margin: 0;
-    color: ${(p) => p.theme.foreground};
+    color: ${(p) =>
+      /* @ts-ignore */
+      p.theme.foreground};
   }
 `;

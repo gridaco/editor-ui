@@ -102,8 +102,8 @@ export function PropertyInput({
           ? 100
           : 10
         : e.ctrlKey || e.metaKey
-        ? 0.1
-        : 1;
+          ? 0.1
+          : 1;
 
       const value = Number(inputRef.current?.value);
       const newValue = e.key === "ArrowUp" ? value + step : value - step;
@@ -178,13 +178,17 @@ const PlainInput = styled.input`
   border: none;
   outline: none;
   background: transparent;
-  color: ${(props) => props.theme.input.value};
+  color: ${(props) =>
+    /* @ts-ignore */
+    props.theme.input.value};
   font-size: 11px;
   font-weight: 500;
   padding: 0;
 
   &:disabled {
-    color: ${(props) => props.theme.input.value_disabled};
+    color: ${(props) =>
+      // @ts-ignore
+      props.theme.input.value_disabled};
   }
 
   ::placeholder {
@@ -208,10 +212,14 @@ const _fix = css`
 
 const Prefix = styled.span`
   ${_fix}
-  color: ${(props) => props.theme.input.prefix};
+  color: ${(props) =>
+    // @ts-ignore
+    props.theme.input.prefix};
 `;
 
 const Suffix = styled.span`
   ${_fix}
-  color: ${(props) => props.theme.input.suffix};
+  color: ${(props) =>
+    // @ts-ignore
+    props.theme.input.suffix};
 `;
