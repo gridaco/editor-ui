@@ -1,13 +1,13 @@
 {
-    "name": "@editor-ui/spacer",
-    "version": "0.0.0",
-    "dependencies": {
-        "@editor-ui/foundation": "0.0.0"
-    },
-    "devDependencies": {
-        "@emotion/styled": "^11.11.0"
-    },
-    "peerDependencies": {
-        "@emotion/styled": "^11.11.0"
-    }
+  "name": "@editor-ui/spacer",
+  "version": "0.0.0",
+  "dependencies": {
+    "@editor-ui/foundation": "workspace:^"
+  },
+  "devDependencies": {
+    "@emotion/styled": "^11.11.0"
+  },
+  "peerDependencies": {
+    "@emotion/styled": "^11.11.0"
+  }
 }

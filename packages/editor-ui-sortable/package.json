@@ -1,23 +1,23 @@
 {
-    "name": "@editor-ui/sortable",
-    "version": "0.0.0",
-    "dependencies": {
-        "@dnd-kit/core": "^3.1.1",
-        "@dnd-kit/modifiers": "^3.0.0",
-        "@dnd-kit/sortable": "^4.0.0",
-        "@dnd-kit/utilities": "^2.0.0",
-        "@editor-ui/foundation": "0.0.0"
-    },
-    "devDependencies": {
-        "@types/react": "18.2.58",
-        "@types/react-dom": "^18.0.8",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0"
-    },
-    "peerDependencies": {
-        "@types/react": "18.2.58",
-        "@types/react-dom": "^18.0.8",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0"
-    }
+  "name": "@editor-ui/sortable",
+  "version": "0.0.0",
+  "dependencies": {
+    "@dnd-kit/core": "^3.1.1",
+    "@dnd-kit/modifiers": "^3.0.0",
+    "@dnd-kit/sortable": "^4.0.0",
+    "@dnd-kit/utilities": "^2.0.0",
+    "@editor-ui/foundation": "workspace:^"
+  },
+  "devDependencies": {
+    "@types/react": "18.2.58",
+    "@types/react-dom": "^18.0.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "peerDependencies": {
+    "@types/react": "18.2.58",
+    "@types/react-dom": "^18.0.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
 }

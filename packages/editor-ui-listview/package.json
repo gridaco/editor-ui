@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "dependencies": {
     "@editor-ui/context-menu": "workspace:^",
-    "@editor-ui/foundation": "0.0.0",
+    "@editor-ui/foundation": "workspace:^",
     "@editor-ui/hooks": "workspace:^",
     "@editor-ui/scroll-area": "workspace:^",
     "@editor-ui/sortable": "workspace:^",
